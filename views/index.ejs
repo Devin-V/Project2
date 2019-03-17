@@ -13,8 +13,16 @@
   <body>
   <h1>This is the landing page</h1>
   <button onclick="ajxRequest()">Display Manifest</button>
-  <table>
-
-  </table>
-  </body>
+    <script>      
+      <% if(locals.object) { %>
+      var test = <%= object %>
+      var ul = document.querySelector("ul");
+      for (var i = 0; i < test.length; i++) {
+        var x = test[i];
+        var listItem = document.createElement("li");
+        listItem.textContent = x;
+        ul.appendChild(listItem);
+      }       
+    <% } %></script>
+</body>
 </html>

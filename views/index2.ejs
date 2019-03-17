@@ -8,13 +8,17 @@
         xhttp.open("GET", "/manifest", true);
         xhttp.send();
       }
-      var rows =<%-JSON.stringify(object)%>
-      console.log("rows? " + rows);
     </script>
   </head>
   <body>
-  <h1>This is the landing page</h1>
+    <script>
+      console.log("rows? " + rows);
+    </script>
+  <h1>This is the landing page2</h1>
   <button onclick="ajxRequest()">Display Manifest</button>
-  <ul><li>hello</li></ul>
+  <ul>
+    <li id="test"></li>
+  </ul>
+  <script>document.getElementById("test").innerHTML = rows; </script>
   </body>
 </html>
