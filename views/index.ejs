@@ -2,21 +2,30 @@
 <html>
   <head>
     <script>
+      // Async Request object
       var xhttp = new XMLHttpRequest();
       function ajxRequest(){
         console.log("button click works");
+        // Call to endpoint
         xhttp.open("GET", "/manifest", true);
+        // When Async Request is done do this callback function
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
+            // Parse JSON into a string
             var x = JSON.parse(this.responseText); 
+            // Start the string
             var str = "<ul>";
             for(var i = 0; i <x.length; i++) {
+              // Create the List Items in the middle of the string
               str += "<li> Customer Name: " + x[i].name + "<br>Starting Location: " + x[i].startloc + "<br>Ending Location: " + x[i].endloc + "</li><br>";
             }
+            // End the ul
             str += "</ul>";
+            // set element "testing" to the str variable made earlier
             document.getElementById("testing").innerHTML = str;
           }
         }
+        // Send it all off
         xhttp.send();
       }
     </script>

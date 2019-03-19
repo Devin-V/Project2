@@ -24,26 +24,30 @@ app.get("/", function(req, res){
 // /Manifest Request
 app.get('/manifest', getManifest);
 
+// 
 function getManifest(req, res) {
   getDB(function(error, result) {
+    // Send JSON to client
     res.json(result);
   });
 }
 
+// Get Stuff From the DB
 function getDB(callback) {
   console.log("getting manifest");
-
+  // Create DB Query
   const sql = "SELECT * FROM manifest";
-
+  // Query DB and Log any errors
   pool.query(sql, function(err, result) {
     if (err) {
       console.log("Error in query: ")
       console.log(err);
       callback(err, null);
     }
-
+    // Log results from DB Query
     console.log("found result: " + JSON.stringify(result.rows));
     callback(null, result.rows);
   });
 }
+// Listen on indicated PORT and log it
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
