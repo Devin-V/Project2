@@ -6,28 +6,24 @@
       function ajxRequest(){
         console.log("button click works");
         xhttp.open("GET", "/manifest", true);
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            var x = JSON.parse(this.responseText); 
+            var str = "<ul>";
+            for(var i = 0; i <x.length; i++) {
+              str += "<li> Customer Name: " + x[i].name + "<br>Starting Location: " + x[i].startloc + "<br>Ending Location: " + x[i].endloc + "</li><br>";
+            }
+            str += "</ul>";
+            document.getElementById("testing").innerHTML = str;
+          }
+        }
         xhttp.send();
       }
-      <% if(locals.object) { %>
-      var test = <%= object %>     
-    <% } %>
     </script>
   </head>
   <body>
   <h1>This is the landing page</h1>
   <button onclick="ajxRequest()">Display Manifest</button>
-  <ul id="dynamic-list"></ul>
-    <script>
-
-    </script>
+    <div id="testing"></div>
 </body>
 </html>
-
-<!--for (var i = 0; i < test.length; i++) {
-  tests = test[i].name + test[i].startLoc + test[i].endLoc;
-
-  var ul = document.getElementById("dynamic-list");
-  var li = document.createElement('li');
-  li.appendChild(document.createTextNode(tests));
-  ul.appendChild(li);
-}       -->

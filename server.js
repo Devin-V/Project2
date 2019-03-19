@@ -1,35 +1,32 @@
+// Set Up
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
 var app = express();
 var params = [];
 
+// Set Up
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', 'views');
 app.set('view engine', 'ejs');
 
-
+// DB Connection
 const { Pool } = require("pg");
 const connectionString = process.env.DATABASE_URL || "postgres://test@localhost:5432/postgres";
 const pool = new Pool({connectionString: connectionString});
 
+//Root request
 app.get("/", function(req, res){
   console.log("received a request for /");
   res.render("index.ejs");
 });
 
+// /Manifest Request
 app.get('/manifest', getManifest);
 
 function getManifest(req, res) {
   getDB(function(error, result) {
-    //params = JSON.stringify(result);
-    //console.log("PARAMS: " + params);
-    var object = [];
-    for (var i = 0; i < result.length; i++) {
-      object[i] = result[i];
-    }
-    //console.log("testing " + object[0].name);
-    res.render("index", {object: object});
+    res.json(result);
   });
 }
 
