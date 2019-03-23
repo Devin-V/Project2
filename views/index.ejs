@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href="main.css" rel="stylesheet" type="text/css">
     <script>
-      // Async Request object
-      var xhttp = new XMLHttpRequest();
-      function ajxRequest(){
+      // Get Request to DB
+      function ajxGetRequest(){
+        // Async Request object
+        var xhttp = new XMLHttpRequest();
         console.log("button click works");
         // Call to endpoint
         xhttp.open("GET", "/manifest", true);
@@ -14,13 +16,13 @@
             // Parse JSON into a string
             var x = JSON.parse(this.responseText); 
             // Start the string
-            var str = "<ul>";
+            var str = "<br><table id=\"customers\"><tr><th>Order Number</th><th>Customer Name</th><th>Starting Location</th><th>Ending Location</th></tr>";
             for(var i = 0; i <x.length; i++) {
               // Create the List Items in the middle of the string
-              str += "<li> Customer Name: " + x[i].name + "<br>Starting Location: " + x[i].startloc + "<br>Ending Location: " + x[i].endloc + "</li><br>";
+              str += "<tr><td> " + x[i].id + "</td><td>" + x[i].name + "</td><td>" + x[i].startloc + "</td><td>" + x[i].endloc + "</td></tr>";
             }
             // End the ul
-            str += "</ul>";
+            str += "</table>";
             // set element "testing" to the str variable made earlier
             document.getElementById("testing").innerHTML = str;
           }
@@ -32,8 +34,15 @@
   </head>
   <body>
     <!-- Empty Layout-->
-  <h1>This is the landing page</h1>
-  <button onclick="ajxRequest()">Display Manifest</button>
+  <h1>Add a Passenger to the Manifest</h1>
+  <form name="form" method="POST" action="/submit">
+    <input type="text" name="name" placeholder="Customer Name">
+    <input type="text" name="startloc" placeholder="Start Location">
+    <input type="text" name="endloc" placeholder="End Location">
+    <input type="submit" value="Add Passenger">
+  </form><br>
+  <h1>Display The Manifest</h1>
+  <button onclick="ajxGetRequest()">Display Manifest</button>
     <div id="testing"></div>
 </body>
 </html>
