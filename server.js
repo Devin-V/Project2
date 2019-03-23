@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 
 // DB Connection
 const { Pool } = require("pg");
-const connectionString = process.env.DATABASE_URL || "postgres://postgres@localhost:5432/postgres";
+const connectionString = "postgres://oxlkfzqjrqnein:406edf6e02a07b1c87c8cfb6092ef423644e34b6584650ffb98bf14caed676c1@ec2-54-221-201-212.compute-1.amazonaws.com:5432/dadn470p42d526";
 const pool = new Pool({connectionString: connectionString});
 
 //Root request
