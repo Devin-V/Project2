@@ -21,13 +21,13 @@ const { Pool } = require("pg");
 const connectionString = "postgres://oxlkfzqjrqnein:406edf6e02a07b1c87c8cfb6092ef423644e34b6584650ffb98bf14caed676c1@ec2-54-221-201-212.compute-1.amazonaws.com:5432/dadn470p42d526";
 const pool = new Pool({connectionString: connectionString});
 
-//Root request
+/*********************Root request********************/
 app.get("/", function(req, res){
   console.log("received a request for /");
   res.render("index.ejs");
 });
 
-// DB Update Request
+/*********************DB Update Request********************/
 app.post('/submit', updateManifest);
 
 // DB Update Request
@@ -50,10 +50,27 @@ function updateManifest(req, res) {
   res.redirect('/');
 }
 
+/*********************DB Delete Request********************/
+app.post('/delete', deleteItem);
+
+// DB Delete Request
+function deleteItem(req, res) {
+  var DBdelete = req.body.numDelete;
+  // Create DB Delete Statement
+  const sql = "DELETE FROM manifest WHERE id='"+DBdelete+"'"
+  // Delete from DB and Log any errors
+  pool.query(sql, function(err, result) {
+    if (err) {
+      console.log("ERROR IN DELETE: ")
+      console.log(err);
+    }
+  });
+  // Display the homepage
+  res.redirect('/');
+}
 
 
-
-// /Manifest Request
+/*********************Display Manifest Request********************/
 app.get('/manifest', getManifest);
 
 // Manifest Request
