@@ -1,8 +1,6 @@
 body {
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
+  background-repeat: no-repeat;
+  background-size: 100%;
   background-image: url("https://i0.wp.com/www.knoxalliance.store/wp-content/uploads/2017/05/light-color-background-images-for-website-top-hd-images-for-free-background-for-website-in-light-color-1-1024x640.jpg?ssl=1");
 }
 
@@ -86,5 +84,4 @@ h1 { color: #111;
   font-weight: 700; 
   line-height: 48px; 
   margin: 10 10 10px; 
-  padding: 0 30px; 
   text-transform: uppercase; }
