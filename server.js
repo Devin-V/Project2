@@ -47,7 +47,7 @@ function updateManifest(req, res) {
     }
   });
   // display the homepage
-  res.redirect('/');
+  res.redirect('/manifest');
 }
 
 /*********************DB Delete Request********************/
@@ -66,7 +66,7 @@ function deleteItem(req, res) {
     }
   });
   // Display the homepage
-  res.redirect('/');
+  res.redirect('/manifest');
 }
 
 
