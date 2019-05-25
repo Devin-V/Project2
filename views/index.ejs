@@ -30,11 +30,6 @@
         // Send it all off
         xhttp.send();
       }
-      function popupTest() {
-        var popup;
-        document.getElementById("myPopup").innerHTML = popup;
-        popup.classlist.toggle("show");
-      }
     </script>
   </head>
   <body>
@@ -45,10 +40,10 @@
     <input type="text" name="startloc" placeholder="Start Location">
     <input type="text" name="endloc" placeholder="End Location">
     <input type="submit" class="button" value="Add Passenger">
-  </form>
-  <div class="popup" onclick="popupTest()">Click Here For An Explanation
-    <span class="popuptext" id="myPopup">Testing!</span>
-  </div><br>
+  </form><br>
+  <div class="tooltip">hover over
+    <span class="tooltiptext">This is the explanation</span>
+  </div>
   <h1>Display The Manifest</h1>
   <button class="button" onclick="ajxGetRequest()">Display Manifest</button>
     <div id="testing"></div>
