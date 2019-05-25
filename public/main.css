@@ -87,7 +87,8 @@ h1 { color: #111;
 
  /* Tooltip container */
  .tooltip {
-  position: relative;
+  position: absolute;
+  top: 80px;
   display: inline-block;
   border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
 }
