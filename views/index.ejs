@@ -31,7 +31,8 @@
         xhttp.send();
       }
       function popupTest() {
-        var popup = document.getElementById("myPopup");
+        var popup;
+        document.getElementById("myPopup") = popup;
         popup.classlist.toggle("show");
       }
     </script>
