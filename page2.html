@@ -1,0 +1,13 @@
+<!doctype HTML>
+<html>
+    <head>
+        <script>
+            function sessionData(){
+                document.getElementById("result").innerHTML = sessionStorage.getItem("customerName");
+            }
+        </script>
+    </head>
+    <body onload="sessionData()">
+        <div id="result"></div>
+    </body>
+</html>

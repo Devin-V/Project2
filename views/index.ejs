@@ -44,6 +44,10 @@
   </head>
   <body>
     <!-- Empty Layout-->
+    <div class="topnav">
+      <a class="active" href="index.ejs">Home</a>
+      <a href="page2.html">Page 2</a>
+    </div>
   <h1>Add a Passenger to the Manifest</h1>
   <form name="form" method="POST" action="/submit">
     <input type="text" id="customerName" name="name" placeholder="Customer Name">
@@ -62,6 +66,5 @@
     <input type="number" name="numDelete" placeholder="0">
     <input type="submit" class="button" value="Delete Passenger">
   </form>
-  <div id="result"></div>
 </body>
 </html>
