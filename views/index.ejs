@@ -38,8 +38,7 @@
         sessionStorage.setItem("customerName", inputName.value);
         sessionStorage.setItem("startLocation", inputStartLocation.value);
         sessionStorage.setItem("endLocation", inputEndLocation.value);
-        var testItem = sessionStorage.getItem("customerName");
-        console.log(testItem);
+        document.getElementById("result").innerHTML = sessionStorage.getItem("customerName");
       }
     </script>
   </head>
@@ -63,5 +62,6 @@
     <input type="number" name="numDelete" placeholder="0">
     <input type="submit" class="button" value="Delete Passenger">
   </form>
+  <div id="result"></div>
 </body>
 </html>
