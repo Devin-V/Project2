@@ -27,6 +27,12 @@ app.get("/", function(req, res){
   res.render("index.ejs");
 });
 
+/*********************Page 2 Request********************/
+app.get('/page2', function(req, res){
+  console.log("received a request for /page2");
+  res.render("page2.html");
+});
+
 /*********************DB Update Request********************/
 app.post('/submit', updateManifest);
 
