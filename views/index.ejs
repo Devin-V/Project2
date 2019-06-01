@@ -38,7 +38,7 @@
         sessionStorage.setItem("customerName", inputName.value);
         sessionStorage.setItem("startLocation", inputStartLocation.value);
         sessionStorage.setItem("endLocation", inputEndLocation.value);
-        console.log(sessionStorage.getItem("customerName"));
+        console.log(JSON.stringify(getItem("customerName")));
       }
     </script>
   </head>
