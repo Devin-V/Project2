@@ -30,7 +30,7 @@ app.get("/", function(req, res){
 /*********************Page 2 Request********************/
 app.get('/page2', function(req, res){
   console.log("received a request for /page2");
-  res.render("page2.html");
+  res.render("page2.ejs");
 });
 
 /*********************DB Update Request********************/
