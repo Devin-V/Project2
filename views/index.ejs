@@ -30,16 +30,26 @@
         // Send it all off
         xhttp.send();
       }
+
+      function storeValues(){
+        var inputName = document.getElementById("customerName");
+        var inputStartLocation = document.getElementById("startLocation");
+        var inputEndLocation = document.getElementById("endLocation");
+        localStorage.setItem("customerName", inputName.value);
+        localStorage.setItem("startLocation", inputStartLocation.value);
+        localStorage.setItem("endLocation", inputEndLocation.value);
+        console.log(document.getElementById("result").innerHTML = sessionStorage.getItem("customerName"));
+      }
     </script>
   </head>
   <body>
     <!-- Empty Layout-->
   <h1>Add a Passenger to the Manifest</h1>
   <form name="form" method="POST" action="/submit">
-    <input type="text" name="name" placeholder="Customer Name">
-    <input type="text" name="startloc" placeholder="Start Location">
-    <input type="text" name="endloc" placeholder="End Location">
-    <input type="submit" class="button" value="Add Passenger">
+    <input type="text" id="customerName" name="name" placeholder="Customer Name">
+    <input type="text" id="startLocation" name="startloc" placeholder="Start Location">
+    <input type="text" id="endLocation" name="endloc" placeholder="End Location">
+    <input type="submit" onclick="storeValues()" class="button" value="Add Passenger">
   </form><br>
   <div class="tooltip">hover over
     <span class="tooltiptext">This is the explanation</span>
