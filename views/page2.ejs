@@ -4,11 +4,9 @@
         <link href="main.css" rel="stylesheet" type="text/css">
         <script>
             function sessionData(){
-                if (sessionStorage.getItem("customerName") != NULL)
-                {
+                if (sessionStorage.getItem("customerName") != NULL) {
                     document.getElementById("result").innerHTML = sessionStorage.getItem("customerName");
-                } else
-                {
+                } else {
                     document.getElementById("result").innerHTML = "If you add a passenger on the home page it will show up here";
                 }
             }
