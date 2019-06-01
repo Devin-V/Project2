@@ -1,6 +1,7 @@
 <!doctype HTML>
 <html>
     <head>
+        <link href="main.css" rel="stylesheet" type="text/css">
         <script>
             function sessionData(){
                 document.getElementById("result").innerHTML = sessionStorage.getItem("customerName");
@@ -8,6 +9,10 @@
         </script>
     </head>
     <body onload="sessionData()">
+        <div class="topnav">
+            <a class="active" href="/">Home</a>
+            <a href="/page2">Page 2</a>
+        </div>
         <div id="result"></div>
     </body>
 </html>
