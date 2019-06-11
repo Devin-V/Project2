@@ -200,6 +200,7 @@ h1 { color: #111;
 /* Links inside the dropdown */
 .dropdown-content button {
   color: white;
+  border: none;
   background: none;
   padding: 0;
   text-decoration: none;
