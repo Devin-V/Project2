@@ -13,6 +13,7 @@
 
             function drawShape(shape) {
                 var canvas = document.getElementById("myCanvas");
+                canvas.width = canvas.width;
                 var ctx = canvas.getContext("2d");
                 switch(shape) {
                     case 'circle':
@@ -30,6 +31,8 @@
                         ctx.lineTo(300, 450);
                         ctx.lineTo(100, 300);
                         ctx.closePath();
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
                     break;
                     default:
                     break;
@@ -39,6 +42,7 @@
             function displayContent(content){
                 var canvas = document.getElementById("myCanvas");
                 var ctx = canvas.getContext("2d");
+                canvas.width = canvas.width;
                 var img = document.getElementById(content);
                 ctx.drawImage(img,0,0);
             }
