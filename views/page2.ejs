@@ -10,56 +10,16 @@
                     document.getElementById("result").innerHTML = "If you add a passenger on the home page it will show up here";
                 }
             }
-
-            var canvas = document.getElementById("myCanvas");
-            var ctx = canvas.getContext("2d");
-            var videoContainer;
-
-            var video = document.createElement("video");
-            video.src = "http://upload.wikimedia.org/wikipedia/commons/7/79/Big_Buck_Bunny_small.ogv";
-            video.autoplay = false;
-            video.loop = true;
-            videoContainer = {
-                video : video,
-                ready : false,
-            };
-
-            video.oncanplay = readyToPlayVideo;
-
-            function readyToPlayVideo(event){
-                videoContainer.scale = Math.min(
-                    canvas.width / this.videoWidth,
-                    canvas.height / this.videoHeight);
-                videoContainer.ready = true;
-                requestAnimationFrame(updateCanvas);
-            }
-
-            function updateCanvas(){
-                ctx.clearRect(0,0,canvas.width,canvas.height);
-                if(videoContainer !== undefined && videoContainer.ready){
-                    var scale = videoContainer.scale;
-                    var vidH = videoContainer.video.videoHeight;
-                    var vidW = videoContainer.video.videoWidth;
-                    var top = canvas.height / 2 - (vidH /2) * scale;
-                    var left = canvas.width / 2 - (vidW /2) * scale;
-
-                    ctx.drawImage(videoContainer.video, left, top, vidW * scale, vidH * scale);
-                    if(videoContainer.video.paused){
-                        drawPayIcon();
-                    }
-                }
-                requestAnimationFrame(updateCanvas);
-            }
         </script>
     </head>
-    <body onload="sessionData(); readyToPlayVideo(); updateCanvas();">
+    <body onload="sessionData(); getMyVideo();">
         <div class="topnav">
             <a class="active" href="/">Home</a>
             <a href="/page2">Page 2</a>
         </div>
         <div id="result"></div>
         <div class="theater">
-            <video id="myVideo" src="http://upload.wikimedia.org/wikipedia/commons/7/79/Big_Buck_Bunny_small.ogv" controls="false"></video>
+            <video id="myVideo" src="https://youtu.be/LH7eegimHUQ" controls="false"></video>
         </div>
         <div class="boxCanvas">
             <canvas id="myCanvas" width="200" height="100"></canvas>
