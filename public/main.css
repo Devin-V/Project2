@@ -217,3 +217,8 @@ h1 { color: #111;
 .theater {
   display: none;
 }
+
+/* .otherPage styling */
+.otherPage {
+  border: 1px;
+}
