@@ -20,23 +20,21 @@
             var columnCount = 4;
             var row = table.insertRow(-1);
             for (var i = 0; i < columnCount; i++){
-              row = table.insertRow(-1);
               switch(j){
                   case 0:
-                    cell.innerHTML = "Order Number";
+                    tr.insertCell(1).outerHTML = "<th>Order Number</th>";
                     break;
                   case 1:
-                    cell.innerHTML = "Customer Name";
+                    tr.insertCell(1).outerHTML = "<th>Order Number</th>";
                     break;
                   case 2:
-                    cell.innerHTML = "Starting Location";
+                    tr.insertCell(1).outerHTML = "<th>Order Number</th>";
                     break;
                   case 3:
-                    cell.innerHTML = "Ending Location";
+                    tr.insertCell(1).outerHTML = "<th>Order Number</th>";
                   default:
                     break;
               }
-              
             }
 
             for (var i = 1; i < x.length; i++) {
