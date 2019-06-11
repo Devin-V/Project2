@@ -172,7 +172,6 @@ h1 { color: #111;
 
 /* Dropdown buttons */
 .dropbtn {
-  clear: both;
   background-color: #57c3d8;
   border: none;
   border-radius: 8px;
