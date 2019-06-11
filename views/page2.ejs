@@ -10,13 +10,20 @@
                     document.getElementById("result").innerHTML = "If you add a passenger on the home page it will show up here";
                 }
             }
+
+            function drawCircle() {
+                var canvas = document.getElementById("myCanvas");
+                var ctx = canvas.getContext("2d");
+                ctx.beginPath();
+                ctx.arc(95,50,40,0,2 * Math.PI);
+                ctx.stroke();
+            }
+
             function displayContent(content){
-                console.log(content);
                 var canvas = document.getElementById("myCanvas");
                 var ctx = canvas.getContext("2d");
                 var img = document.getElementById(content);
                 ctx.drawImage(img,0,0);
-                console.log("finished");
             }
         </script>
     </head>
@@ -35,6 +42,7 @@
         <div class="dropdown">
             <button class="dropbtn">Canvas Options</button>
             <div class="dropdown-content">
+                <button onclick="drawCircle()">Draw A Circle</button>
                 <button onclick="displayContent('lions')">Lions!</button>
                 <button onclick="displayContent('tigers')">Tigers!</button>
                 <button onclick="displayContent('bears')">& Bears!</button>
