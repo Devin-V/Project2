@@ -19,23 +19,23 @@
             var table = document.createElement("table");
             var columnCount = 4;
 
-            for (var i = 0; i < x.length; i++) {
+            for (var i = -1; i < x.length; i++) {
               row = table.insertRow(-1);
               for (var j = 0; j < columnCount; j++) {
                 var cell = row.insertCell(-1);
-                if (i == 0) {
+                if (i == -1) {
                   switch(j){
                   case 0:
                     cell.outerHTML = "<th>Order Number</th>";
                     break;
                   case 1:
-                   cell.outerHTML = "<th>Order Number</th>";
+                   cell.outerHTML = "<th>Customer Name</th>";
                     break;
                   case 2:
-                    cell.outerHTML = "<th>Order Number</th>";
+                    cell.outerHTML = "<th>Starting Location</th>";
                     break;
                   case 3:
-                    cell.outerHTML  = "<th>Order Number</th>";
+                    cell.outerHTML  = "<th>Ending Location</th>";
                   default:
                     break;
               }
@@ -55,17 +55,16 @@
                     default:
                       break;
                 }
-            }
+              }
             }
           }
-
             var dvTable = document.getElementById("testing");
             dvTable.innerHTML = "";
             dvTable.appendChild(table);
 
-
+            /************* This was the easy way to make the table without using DOM *************
             // Start the string
-            /*var str = "<br><table id=\"customers\"><tr><th>Order Number</th><th>Customer Name</th><th>Starting Location</th><th>Ending Location</th></tr>";
+            var str = "<br><table id=\"customers\"><tr><th>Order Number</th><th>Customer Name</th><th>Starting Location</th><th>Ending Location</th></tr>";
             for(var i = 0; i <x.length; i++) {
               // Create the List Items in the middle of the string
               str += "<tr><td> " + x[i].id + "</td><td>" + x[i].name + "</td><td>" + x[i].startloc + "</td><td>" + x[i].endloc + "</td></tr>";
@@ -74,7 +73,8 @@
             str += "</table>";
             // set element "testing" to the str variable made earlier
             document.getElementById("testing").innerHTML = str;
-          }*/
+          }
+          ****************************************************************************************/
         }
       }
         // Send it all off
