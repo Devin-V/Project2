@@ -39,6 +39,12 @@
                 }
             }
 
+            function clearCanvas(){
+                var canvas = document.getElementById("myCanvas");
+                var ctx = canvas.getContext("2d");
+                canvas.width = canvas.width;
+            }
+
             function displayContent(content){
                 var canvas = document.getElementById("myCanvas");
                 var ctx = canvas.getContext("2d");
@@ -70,6 +76,8 @@
                 <button onclick="displayContent('lions')">Lions!</button>
                 <button onclick="displayContent('tigers')">Tigers!</button>
                 <button onclick="displayContent('bears')">& Bears!</button>
+                <br>
+                <button onclick="clearCanvas()">Clear Canvas</button>
             </div>
         </div>
         <br>
