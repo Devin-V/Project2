@@ -3,15 +3,16 @@
     <head>
         <link href="main.css" rel="stylesheet" type="text/css">
         <script>
+            // Load any input from the Home page and render it using sessionStorage
             function sessionData(){
                 if (sessionStorage.getItem("customerName") != null) {
-                    var customerStr = sessionStorage.getItem("customerName") + " " + sessionStorage.getItem("startLocation") + " " + sessionStorage.getItem("endLocation");
+                    var customerStr = "Name: " + sessionStorage.getItem("customerName") + " Start Location: " + sessionStorage.getItem("startLocation") + " End Location: " + sessionStorage.getItem("endLocation");
                     document.getElementById("result").innerHTML = customerStr;
                 } else {
                     document.getElementById("result").innerHTML = "If you add a passenger on the home page it will show up here";
                 }
             }
-
+            // Draw shapes in canvas depending on user input
             function drawShape(shape) {
                 var canvas = document.getElementById("myCanvas");
                 canvas.width = canvas.width;
@@ -39,13 +40,13 @@
                     break;
                 }
             }
-
+            // Clear Canvas of any previous inputs
             function clearCanvas(){
                 var canvas = document.getElementById("myCanvas");
                 var ctx = canvas.getContext("2d");
                 canvas.width = canvas.width;
             }
-
+            // Display pictures on canvas.
             function displayContent(content){
                 var canvas = document.getElementById("myCanvas");
                 var ctx = canvas.getContext("2d");
@@ -53,7 +54,7 @@
                 var img = document.getElementById(content);
                 ctx.drawImage(img,0,0);
             }
-
+            // Change CSS colors of result div
             function colorSelect(){
                 var newColor = document.getElementById("colorText").value;
                 var eleChange = document.querySelector('#result');
@@ -62,25 +63,32 @@
         </script>
     </head>
     <body onload="sessionData();">
+        <!-- Navigation Bar On Top -->
         <div class="topnav">
             <a href="/">Home</a>
             <a class="active" href="/page2">Page 2</a>
         </div>
+        <!-- Form To Change Colors -->
         <div class="colorForm">
             <form onsubmit="colorSelect(); return false;">
-                <input id="colorText" type="text" placeholder="Change Color">
-                <input class="button" type="submit" value="New Color">
+                <input id="colorText" type="text" placeholder="Type A New Color">
+                <input class="button" type="submit" value="Change Color">
             </form>
         </div>
         <div class="otherPage" id="result" style="background-color: none"></div>
+        <!-- This is a hidden div to get img URLS -->
         <div class="theater">
             <img id="lions" src="https://www.bornfree.org.uk/storage/media/content/images/Field%20Conservation%20Work/Meru/meru-1.jpg">
             <img id="tigers" src="https://api.fauna-flora.org/wp-content/uploads/2017/10/CBD-8127-JHO-400x400.jpg">
             <img id="bears" src="https://shortyawards.imgix.net/profile/images/3424553/thecancelbear.jpeg?auto=format&fit=crop&h=400&q=65&w=400&s=8e9d64fd17f09e8a80daaf08784aebca">
+            <img id="ohMy" src="https://nlindroth.files.wordpress.com/2010/06/lionstigersbears.jpg">
         </div>
+        <!-- Reset Positions Between Divs-->
         <div style="clear:both;"></div>
+        <!-- Dropdown Menu For Canvas Alterations -->
         <div class="dropdown">
             <button class="dropbtn">Canvas Options</button>
+            <!-- Individual Canvas Options -->
             <div class="dropdown-content">
                 <button onclick="drawShape('circle')">Draw A Circle</button>
                 <button onclick="drawShape('square')">Draw A Square</button>
@@ -89,11 +97,13 @@
                 <button onclick="displayContent('lions')">Lions!</button>
                 <button onclick="displayContent('tigers')">Tigers!</button>
                 <button onclick="displayContent('bears')">& Bears!</button>
+                <button onclick="displayContent('ohMy')"> OH MY!</button>
                 <br>
                 <button onclick="clearCanvas()">Clear Canvas</button>
             </div>
         </div>
         <br>
+        <!-- Blank Canvas -->
         <div class="boxCanvas">
             <canvas id="myCanvas" width="400" height="400"></canvas>
         </div>
