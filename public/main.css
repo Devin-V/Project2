@@ -164,7 +164,7 @@ h1 { color: #111;
 
 /* styling the canvas section */
 .boxCanvas {
-  width: 70%;
+  width: 400px;
   float: left;
   border: 1px solid;
 }
