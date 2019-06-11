@@ -11,11 +11,19 @@
                 }
             }
 
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext("2d");
+            var video1 = document.getElementById("myVideo");
+
             function getMyVideo() {
-                var canvas = document.getElementById("myCanvas");
-                var ctx = canvas.getContext("2d");
-                var video1 = document.getElementById("myVideo");
-                ctx.drawImage(video1,0,0);
+                video.addEventListener('loadeddata', function() {
+                    video.play();
+                    update();
+                })
+            }
+            function update(){
+                ctx.drawImage(video1,0,0)
+                requestAnimationFrame(update);
             }
         </script>
     </head>
