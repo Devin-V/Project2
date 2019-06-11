@@ -14,8 +14,7 @@
                 console.log(content);
                 var canvas = document.getElementById("myCanvas");
                 var ctx = canvas.getContext("2d");
-                var img = new Image();
-                img.src = document.getElementById(content);
+                var img = document.getElementById(content);
                 ctx.drawImage(img,0,0);
                 console.log()
             }
@@ -42,7 +41,7 @@
             </div>
         </div>
         <div class="boxCanvas">
-            <canvas id="myCanvas" width="400" height="400"></canvas>
+            <canvas id="myCanvas" width="405" height="405"></canvas>
         </div>
     </body>
 </html>
