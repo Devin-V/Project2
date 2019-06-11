@@ -18,44 +18,44 @@
 
             var table = document.createElement("table");
             var columnCount = 4;
-            var row = table.insertRow(-1);
-            for (var i = 0; i < columnCount; i++){
-              switch(i){
-                  case 0:
-                    tr.insertCell(1).outerHTML = "<th>Order Number</th>";
-                    break;
-                  case 1:
-                    tr.insertCell(1).outerHTML = "<th>Order Number</th>";
-                    break;
-                  case 2:
-                    tr.insertCell(1).outerHTML = "<th>Order Number</th>";
-                    break;
-                  case 3:
-                    tr.insertCell(1).outerHTML = "<th>Order Number</th>";
-                  default:
-                    break;
-              }
-            }
 
             for (var i = 0; i < x.length; i++) {
               row = table.insertRow(-1);
               for (var j = 0; j < columnCount; j++) {
                 var cell = row.insertCell(-1);
-                switch(j){
+                if (i == 0) {
+                  switch(j){
                   case 0:
-                    cell.innerHTML = x[i].id;
+                    cell.outerHTML = "<th>Order Number</th>";
                     break;
                   case 1:
-                    cell.innerHTML = x[i].name;
+                   cell.outerHTML = "<th>Order Number</th>";
                     break;
                   case 2:
-                    cell.innerHTML = x[i].startloc;
+                    cell.outerHTML = "<th>Order Number</th>";
                     break;
                   case 3:
-                    cell.innerHTML = x[i].endloc;
+                    cell.outerHTML  = "<th>Order Number</th>";
                   default:
                     break;
               }
+                } else {
+                  switch(j){
+                    case 0:
+                      cell.innerHTML = x[i].id;
+                      break;
+                    case 1:
+                      cell.innerHTML = x[i].name;
+                      break;
+                    case 2:
+                      cell.innerHTML = x[i].startloc;
+                      break;
+                    case 3:
+                      cell.innerHTML = x[i].endloc;
+                    default:
+                      break;
+                }
+            }
             }
           }
 
