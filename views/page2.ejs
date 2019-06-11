@@ -11,12 +11,29 @@
                 }
             }
 
-            function drawCircle() {
+            function drawShape(shape) {
                 var canvas = document.getElementById("myCanvas");
                 var ctx = canvas.getContext("2d");
-                ctx.beginPath();
-                ctx.arc(95,50,40,0,2 * Math.PI);
-                ctx.stroke();
+                switch(shape) {
+                    case 'circle':
+                        ctx.beginPath();
+                        ctx.arc(95,50,40,0,2 * Math.PI);
+                        ctx.stroke();
+                    break;
+                    case 'square':
+                       ctx.strokeRect(50,50,100,100);
+                    break;
+                    case 'triangle':
+                        ctx.beginPath();
+                        ctx.moveTo(100, 300);
+                        ctx.lineTo(300, 150);
+                        ctx.lineTo(300, 450);
+                        ctx.lineTo(100, 300);
+                        ctx.closePath();
+                    break;
+                    default:
+                    break;
+                }
             }
 
             function displayContent(content){
@@ -42,7 +59,10 @@
         <div class="dropdown">
             <button class="dropbtn">Canvas Options</button>
             <div class="dropdown-content">
-                <button onclick="drawCircle()">Draw A Circle</button>
+                <button onclick="drawShape('circle')">Draw A Circle</button>
+                <button onclick="drawShape('square')">Draw A Square</button>
+                <button onclick="drawShape('triangle')">Draw A Triangle</button>
+                <br>
                 <button onclick="displayContent('lions')">Lions!</button>
                 <button onclick="displayContent('tigers')">Tigers!</button>
                 <button onclick="displayContent('bears')">& Bears!</button>
