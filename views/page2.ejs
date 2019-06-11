@@ -11,27 +11,13 @@
                 }
             }
 
-            /*function getMyVideo() {
+            function getMyVideo() {
                 var canvas = document.getElementById('canvas');
                 if (canvas.getContext) {
                     var ctx = canvas.getContext('2d');
                     return document.getElementById('myVideo');
                 }
-            }*/
-
-            /*var canvas = document.getElementById('canvas');
-            var ctx = canvas.getContext('2d');
-            var video = document.getElementById('video');
-
-            video.addEventListener('play', function() {
-                var $this = this;
-                (function loop () {
-                    if (!$this.paused && !$this.ended) {
-                        ctx.drawImage($this, 0, 0);
-                        setTimeout(loop, 1000 / 30);
-                    }
-                })();
-            }, 0);*/
+            }
         </script>
     </head>
     <body onload="sessionData(); getMyVideo();">
@@ -40,11 +26,11 @@
             <a href="/page2">Page 2</a>
         </div>
         <div id="result"></div>
-        <div id="theater">
+        <div class="theater">
             <video id="myVideo" src="http://upload.wikimedia.org/wikipedia/commons/7/79/Big_Buck_Bunny_small.ogv" controls="false"></video>
-            <div class="boxCanvas">
-                <canvas id="myCanvas" width="200" height="100"></canvas>
-            </div>
+        </div>
+        <div class="boxCanvas">
+            <canvas id="myCanvas" width="200" height="100"></canvas>
         </div>
     </body>
 </html>
