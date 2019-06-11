@@ -20,11 +20,23 @@
             var columnCount = 4;
             var row = table.insertRow(-1);
             for (var i = 0; i < columnCount; i++){
-              var headerCell = document.createElement("TH");
-              if (i = 0) {headerCell.innerHTML = "Order Number"; row.appendChild(headerCell);};
-              if (i = 1) {headerCell.innerHTML = "Customer Name"; row.appendChild(headerCell);};
-              if (i = 2) {headerCell.innerHTML = "Starting Location"; row.appendChild(headerCell);};
-              if (i = 3) {headerCell.innerHTML = "Ending Location"; row.appendChild(headerCell);};
+              row = table.insertRow(-1);
+              switch(j){
+                  case 0:
+                    cell.innerHTML = "Order Number";
+                    break;
+                  case 1:
+                    cell.innerHTML = "Customer Name";
+                    break;
+                  case 2:
+                    cell.innerHTML = "Starting Location";
+                    break;
+                  case 3:
+                    cell.innerHTML = "Ending Location";
+                  default:
+                    break;
+              }
+              
             }
 
             for (var i = 1; i < x.length; i++) {
