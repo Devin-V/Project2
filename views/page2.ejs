@@ -5,7 +5,7 @@
         <script>
             function sessionData(){
                 if (sessionStorage.getItem("customerName") != null) {
-                    var customerStr = sessionStorage.getItem("customerName") + " " + sessionStorage.getItem(startLocation) + " " + sessionStorage.getItem(endLocation);
+                    var customerStr = sessionStorage.getItem("customerName") + " " + sessionStorage.getItem("startLocation") + " " + sessionStorage.getItem("endLocation");
                     document.getElementById("result").innerHTML = customerStr;
                 } else {
                     document.getElementById("result").innerHTML = "If you add a passenger on the home page it will show up here";
