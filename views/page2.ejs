@@ -12,11 +12,10 @@
             }
 
             function getMyVideo() {
-                var canvas = document.getElementById('canvas');
-                if (canvas.getContext) {
-                    var ctx = canvas.getContext('2d');
-                    return document.getElementById('myVideo');
-                }
+                var canvas = document.getElementById("myCanvas");
+                var ctx = canvas.getContext("2d");
+                var video1 = document.getElementById("myVideo");
+                ctx.drawImage(video1,0,0);
             }
         </script>
     </head>
