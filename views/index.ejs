@@ -31,7 +31,20 @@
               row = table.insertRow(-1);
               for (var j = 0; j < columnCount; j++) {
                 var cell = row.insertCell(-1);
-                cell.innerHTML = x[i][j];
+                switch(j){
+                  case 1:
+                    cell.innerHTML = x[i].id;
+                    break;
+                  case 2:
+                    cell.innerHTML = x[i].name;
+                    break;
+                  case 3:
+                    cell.innerHTML = x[i].startLoc;
+                    break;
+                  case 4:
+                    cell.innerHTML = x[i].endLoc;
+                  default:
+                    break;
               }
             }
 
