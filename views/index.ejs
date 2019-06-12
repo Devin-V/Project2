@@ -16,7 +16,7 @@
             // Parse JSON into a string
             var x = JSON.parse(this.responseText); 
 
-            var table = document.createElement("table");
+            /*var table = document.createElement("table");
             var columnCount = 4;
 
             for (var i = -1; i < x.length; i++) {
@@ -60,9 +60,9 @@
           }
             var dvTable = document.getElementById("testing");
             dvTable.innerHTML = "";
-            dvTable.appendChild(table);
+            dvTable.appendChild(table);*/
 
-            /************* This was the easy way to make the table without using DOM *************
+            /************* This was the easy way to make the table without using DOM *************/
             // Start the string
             var str = "<br><table id=\"customers\"><tr><th>Order Number</th><th>Customer Name</th><th>Starting Location</th><th>Ending Location</th></tr>";
             for(var i = 0; i <x.length; i++) {
@@ -73,8 +73,8 @@
             str += "</table>";
             // set element "testing" to the str variable made earlier
             document.getElementById("testing").innerHTML = str;
-          }
-          ****************************************************************************************/
+          
+          /****************************************************************************************/
         }
       }
         // Send it all off
