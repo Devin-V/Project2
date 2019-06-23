@@ -61,11 +61,6 @@
                 eleChange.style.backgroundColor = newColor;
             }
             // Trigger CSS animations
-            function activateAnim() {
-                var newState = "running";
-                var eleChange = document.querySelector('#animation');
-                eleChange.style.animation-play-state = newState;
-            }
         </script>
     </head>
     <body onload="sessionData();">
@@ -118,8 +113,8 @@
             <canvas id="myCanvas" width="400" height="400"></canvas>
         </div>
         <div style="clear:both;"></div>
-        <div id="animation" class="movingBox">
-        <button id="toggleButton" class="button" value="ACTION" onclick="this.style.animation-play-state = 'running'">ACTION</button>
-        </div>
+        <div id="animation" class="movingBox"></div>
+        <button id="toggleButton" class="button" value="ACTION" >ACTION</button>
+
     </body>
 </html>
