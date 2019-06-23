@@ -68,17 +68,17 @@
                     case 0:
                         var div = document.getElementById("animation");
                         div.style.webkitAnimationPlayState = "running";
-                        buttonText = "Translate";
+                        buttonText.innerHTML = "Translate";
                         counter++;
                     break;
                     case 1:
                         var stuff;
-                        buttonText = "Transform";
+                        buttonText.innerHTML = "Transform";
                         counter++;
                     break;
                     case 2:
                         var stuff;
-                        buttonText = "Animate";
+                        buttonText.innerHTML = "Animate";
                         counter = 0;
                 }
                 console.log(counter);
