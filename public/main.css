@@ -209,6 +209,7 @@ h1 { color: #111;
 }
 
 .myAnimation{
+  animation-iteration-count: infinite;
   animation-name: testAnimaiton;
   animation-duration:4s;
 }
