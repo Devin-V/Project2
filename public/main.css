@@ -205,9 +205,9 @@ h1 { color: #111;
   width: 100px;
   position: relative;
   background-color: red;
-  animation-name: testAnimation;
+  animation-name: none;
   animation-duration: 4s;
-  animation-play-state: paused;
+  animation-play-state: running;
 }
 
 @-webkit-keyframes testAnimation{
