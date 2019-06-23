@@ -199,14 +199,14 @@ h1 { color: #111;
 }
 
 /* CSS animations */
-#animation {
+#movingBox {
   margin: 30px;
   height: 100px;
   width: 100px;
   background-color: red;
 }
 
-#animation.horizontalTranslate {
+#movingBox.horizontalTranslate {
   -webkit-transition: 3s;
   -moz-transition: 3s;
   -ms-transition: 3s;
