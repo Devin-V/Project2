@@ -67,7 +67,8 @@
                     case 0:
                         var buttonText = document.getElementById("toggleButton");
                         var div = document.getElementById("animation");
-                        div.style.webkitAnimationPlayState = "running";
+                        document.getElementById("animation").classList.add('myAnimation');
+                        //div.style.webkitAnimationPlayState = "running";
                         buttonText.textContent = "Transform";
                         counter++;
                     break;
