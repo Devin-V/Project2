@@ -62,21 +62,23 @@
             }
             // Trigger CSS animations
             var counter = 0;
-            var buttonText = document.getElementById("toggleButton");
             function moveBox() {
                 switch(counter) {
                     case 0:
+                        var buttonText = document.getElementById("toggleButton");
                         var div = document.getElementById("animation");
                         div.style.webkitAnimationPlayState = "running";
                         buttonText.textContent = "Translate";
                         counter++;
                     break;
                     case 1:
+                        var buttonText = document.getElementById("toggleButton");
                         var stuff;
                         buttonText.textContent = "Transform";
                         counter++;
                     break;
                     case 2:
+                        var buttonText = document.getElementById("toggleButton");
                         var stuff;
                         buttonText.textContent = "Animate";
                         counter = 0;
