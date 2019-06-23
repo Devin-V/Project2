@@ -62,7 +62,7 @@
             }
             // Trigger CSS animations
             var movingBox = document.getElementsByClassName('movingBox');
-            document.getElementById('animation').onclick = function() {
+            document.getElementsByClassName('movingBox').onclick = function() {
                 if(this.innerHTML === 'ACTION')
                 {
                     this.innerHTML = 'Pause';
