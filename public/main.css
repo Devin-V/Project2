@@ -206,7 +206,7 @@ h1 { color: #111;
   position: relative;
   background-color: red;
   animation-name: none;
-  animation-duration: 4s;
+  animation-duration: 8s;
   animation-play-state: running;
 }
 
