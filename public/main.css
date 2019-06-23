@@ -205,7 +205,8 @@ h1 { color: #111;
   width: 100px;
   position: relative;
   background-color: red;
-  animation: testAnimation;
+  animation-name: testAnimation;
+  animation-duration: 4s;
   animation-play-state: paused;
 }
 
