@@ -223,5 +223,6 @@ h1 { color: #111;
 }
 
 .myTransition {
-  transition: width 4s;
+  width: 200px;
+  transition: width 2s;
 }
