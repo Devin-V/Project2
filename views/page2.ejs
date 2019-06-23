@@ -79,7 +79,7 @@
                     break;
                     case 2:
                         var buttonText = document.getElementById("toggleButton");
-                        var div = document.getElementById("animation");
+                        document.getElementById("animation").classList.add('myTransition');
                         buttonText.textContent = "Reset";
                         div.style.webkitAnimationPlayState = "paused";
                         counter++;
@@ -87,6 +87,8 @@
                     case 3:buttonText
                         var buttonText = document.getElementById("toggleButton");
                         buttonText.textContent = "Animation";
+                        document.getElementById("animation").classList.remove('myTransform');
+                        document.getElementById("animation").classList.remove('myTransition');
                         counter = 0;
                 }
             }
