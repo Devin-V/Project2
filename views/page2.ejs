@@ -61,9 +61,26 @@
                 eleChange.style.backgroundColor = newColor;
             }
             // Trigger CSS animations
+            var counter = 0;
+            var buttonText = getElementById("toggleButton");
             function moveBox() {
-                var div = document.getElementById("animation");
-                div.style.webkitAnimationPlayState = "running";
+                switch(counter) {
+                    case 0:
+                        var div = document.getElementById("animation");
+                        div.style.webkitAnimationPlayState = "running";
+                        buttonText = "Translate";
+                        counter++;
+                    break;
+                    case 1:
+                        var stuff;
+                        buttonText = "Transform";
+                        counter++;
+                    break;
+                    case 2:getElementById
+                        var stuff;
+                        buttonText = "Animate";
+                        counter = 0;
+                }
             }
         </script>
     </head>
@@ -118,7 +135,7 @@
         </div>
         <div style="clear:both;"></div>
         <div id="animation" class="movingBox"></div>
-        <button id="toggleButton" class="button" value="ACTION" onclick="moveBox()">ACTION</button>
+        <button id="toggleButton" class="button" value="Animate" onclick="moveBox()">Animate</button>
 
     </body>
 </html>
