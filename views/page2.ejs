@@ -73,7 +73,7 @@
                     break;
                     case 1:
                         var buttonText = document.getElementById("toggleButton");
-                        var stuff;
+                        document.getElementById("boxCanvas").classList.add('myTransform');
                         buttonText.textContent = "Transform";
                         counter++;
                     break;
@@ -83,7 +83,6 @@
                         buttonText.textContent = "Animate";
                         counter = 0;
                 }
-                console.log(counter);
             }
         </script>
     </head>
