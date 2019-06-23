@@ -217,3 +217,7 @@ h1 { color: #111;
 .myTransform{
   transform: skewY(20deg);
 }
+
+.myTransition {
+  transition: width 4s;
+}

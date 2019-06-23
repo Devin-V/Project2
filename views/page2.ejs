@@ -68,19 +68,25 @@
                         var buttonText = document.getElementById("toggleButton");
                         var div = document.getElementById("animation");
                         div.style.webkitAnimationPlayState = "running";
-                        buttonText.textContent = "Translate";
+                        buttonText.textContent = "Transform";
                         counter++;
                     break;
                     case 1:
                         var buttonText = document.getElementById("toggleButton");
                         document.getElementById("animation").classList.add('myTransform');
-                        buttonText.textContent = "Transform";
+                        buttonText.textContent = "Transition";
                         counter++;
                     break;
                     case 2:
                         var buttonText = document.getElementById("toggleButton");
-                        var stuff;
-                        buttonText.textContent = "Animate";
+                        var div = document.getElementById("animation");
+                        buttonText.textContent = "Reset";
+                        div.style.webkitAnimationPlayState = "paused";
+                        counter++;
+                    break;
+                    case 3:buttonText
+                        var buttonText = document.getElementById("toggleButton");
+                        buttonText.textContent = "Animation";
                         counter = 0;
                 }
             }
