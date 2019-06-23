@@ -60,6 +60,15 @@
                 var eleChange = document.querySelector('#result');
                 eleChange.style.backgroundColor = newColor;
             }
+            // Trigger CSS animations
+            var movingBox = document.getElementsByClassName('movingBox');
+            document.getElementById('toggleButton').onclick = function() {
+                if(this.innerHTML === 'ACTION')
+                {
+                    this.innerHTML = 'Pause';
+                    movingBox.classList.add('horizontalTranslate');
+                }
+            }
         </script>
     </head>
     <body onload="sessionData();">
@@ -111,5 +120,7 @@
         <div class="boxCanvas">
             <canvas id="myCanvas" width="400" height="400"></canvas>
         </div>
+        <div class="movingBox"></div>
+        <button id="toggleButton" class="button" value="ACTION">ACTION</button>
     </body>
 </html>
