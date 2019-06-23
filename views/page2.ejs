@@ -61,19 +61,10 @@
                 eleChange.style.backgroundColor = newColor;
             }
             // Trigger CSS animations
-            var movingBox = document.getElementsByClassName('movingBox');
-            document.getElementsByClassName('movingBox').onclick = function() {
-                if(this.innerHTML === 'ACTION')
-                {
-                    this.innerHTML = 'Pause';
-                    movingBox.classList.add('horizontalTranslate');
-                } else {
-                    this.innerHTML = 'Play';
-                    var computedStyle = window.getComputedStyle(movingBox),
-                    marginLeft = computedStyle.getPropertyValue('margin-left');
-                    movingBox.style.marginLeft = marginLeft;
-                    movingBox.classList.remove('horizontalTranslate');
-                }
+            function activateAnim() {
+                var newState = "running";
+                var eleChange = document.querySelector('#animation');
+                eleChange.style.animation-play-state = newState;
             }
         </script>
     </head>
@@ -127,7 +118,8 @@
             <canvas id="myCanvas" width="400" height="400"></canvas>
         </div>
         <div style="clear:both;"></div>
-        <div id="animation" class="movingBox"></div>
-        <button id="toggleButton" class="button" value="ACTION">ACTION</button>
+        <div id="animation" class="movingBox">
+        <button id="toggleButton" class="button" value="ACTION" onclick="this.style.animation-play-state = 'running'">ACTION</button>
+        </div>
     </body>
 </html>

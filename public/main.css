@@ -203,14 +203,13 @@ h1 { color: #111;
   margin: 30px;
   height: 100px;
   width: 100px;
+  position: relative;
   background-color: red;
+  animation: mymove 5s;
+  animation-play-state: paused;
 }
 
-.movingBox.horizontalTranslate {
-  -webkit-transition: 3s;
-  -moz-transition: 3s;
-  -ms-transition: 3s;
-  -o-transition: 3s;
-  transition: 3s;
-  margin-left: 50% !important;
+@-webkit-keyframes mymove{
+  from {left: 0px;}
+  to {left: 200px;}
 }
