@@ -67,6 +67,12 @@
                 {
                     this.innerHTML = 'Pause';
                     movingBox.classList.add('horizontalTranslate');
+                } else {
+                    this.innerHTML = 'Play';
+                    var computedStyle = window.getComputedStyle(movingBox),
+                    marginLeft = computedStyle.getPropertyValue('margin-left');
+                    movingBox.style.marginLeft = marginLeft;
+                    movingBox.classList.remove('horizontalTranslate');
                 }
             }
         </script>
