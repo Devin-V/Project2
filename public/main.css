@@ -205,13 +205,7 @@ h1 { color: #111;
   width: 100px;
   position: relative;
   background-color: red;
-
-}
-
-.myAnimation{
-  animation-iteration-count: infinite;
-  animation-name: testAnimaiton;
-  animation-duration:4s;
+  animation-name: testAnimation;
   animation-play-state: paused;
 }
 
@@ -226,5 +220,5 @@ h1 { color: #111;
 
 .myTransition {
   width: 200px;
-  transition: width 2s;
+  transition: width 4s;
 }
