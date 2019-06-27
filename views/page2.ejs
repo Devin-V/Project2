@@ -5,8 +5,8 @@
         <script>
             // Load any input from the Home page and render it using sessionStorage
             function sessionData(){
-                if (sessionStorage.getItem("customerName") != null) {
-                    var customerStr = "Name: " + sessionStorage.getItem("customerName") + " Start Location: " + sessionStorage.getItem("startLocation") + " End Location: " + sessionStorage.getItem("endLocation");
+                if (localStorage.getItem("customerName") != null) {
+                    var customerStr = "Name: " + localStorage.getItem("customerName") + " Start Location: " + localStorage.getItem("startLocation") + " End Location: " + localStorage.getItem("endLocation");
                     document.getElementById("result").innerHTML = customerStr;
                 } else {
                     document.getElementById("result").innerHTML = "If you add a passenger on the home page it will show up here via local storage";
