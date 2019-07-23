@@ -65,11 +65,13 @@ table, th, td {
 
 /*Input Styles*/
 input[type=text]:focus {
-  border: 3px solid #555;
+  /*border: 3px solid #555;*/
+  -webkit-transition: border 3px solid #555;
 }
 
 input[type=number]:focus {
-  border: 3px solid #555;
+  /*border: 3px solid #555;*/
+  -webkit-transition: border 3px solid #555;
 }
 
 input[type=text] {
