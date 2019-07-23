@@ -91,7 +91,7 @@
 
       function displayAnimation(){
         document.getElementById("animationID").style.visibility = "visible";
-        setTimeout(function(){displayAnimation(animationID, 'hidden')}, 2000)
+        setTimeout(function(){displayAnimation("animationID", 'hidden')}, 2000)
       }
     </script>
   </head>
@@ -111,7 +111,6 @@
   <div></div>
   <h1>Display The Manifest</h1>
   <button class="button" style="margin-bottom :8px" onclick="ajxGetRequest();displayAnimation()">Display Manifest</button>
-  <div style="clear:both;"></div>
   <div id="animationID" class="lds-hourglass"></div>  
   <div id="testing"></div>
   <h1>Delete An Entry</h1>
