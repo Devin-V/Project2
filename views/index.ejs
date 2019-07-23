@@ -80,17 +80,17 @@
         xhttp.send();
       }
 
-      /*function storeValues(){
+      function storeValues(){
         var inputName = document.getElementById("customerName");
         var inputStartLocation = document.getElementById("startLocation");
         var inputEndLocation = document.getElementById("endLocation");
         localStorage.setItem("customerName", inputName.value);
         localStorage.setItem("startLocation", inputStartLocation.value);
         localStorage.setItem("endLocation", inputEndLocation.value);
-      } */
+      } 
 
       function displayAnimation(){
-        var el = domument.getElementById("animationID");
+        var el = document.getElementById("animationID");
         var original = el.style.visibility;
         el.style.visibility = "visible";
         window.setTimeout(function() {el.style.visibility = original;}, 2000);
