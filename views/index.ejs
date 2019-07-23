@@ -90,8 +90,10 @@
       } */
 
       function displayAnimation(){
-        document.getElementById("animationID").style.visibility = "visible";
-        setTimeout(function(){displayAnimation("animationID", 'hidden')}, 2000)
+        var el = domument.getElementById("animationID");
+        var original = el.style.visibility;
+        el.style.visibility = "visible";
+        window.setTimeout(function() {el.style.visibility = original;}, 2000);
       }
     </script>
   </head>
@@ -110,7 +112,7 @@
   </form><br>
   <div></div>
   <h1>Display The Manifest</h1>
-  <button class="button" style="margin-bottom :8px" onclick="ajxGetRequest();displayAnimation()">Display Manifest</button>
+  <button class="button" style="margin-bottom :8px" onclick="setTimeout(ajxGetRequest, 2000);displayAnimation()">Display Manifest</button>
   <div id="animationID" class="lds-hourglass"></div>  
   <div id="testing"></div>
   <h1>Delete An Entry</h1>
