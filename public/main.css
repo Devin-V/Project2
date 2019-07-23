@@ -96,6 +96,7 @@ input[type=number] {
 }
 /* Loading Style */
 .lds-hourglass {
+  visibility: hidden;
   display: inline-block;
   position: relative;
   width: 64px;
