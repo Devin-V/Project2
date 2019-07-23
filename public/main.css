@@ -65,25 +65,33 @@ table, th, td {
 
 /*Input Styles*/
 input[type=text]:focus {
-  /*border: 3px solid #555;*/
-  -webkit-transition: border 3px solid #555;
+  border: 3px solid #555;
 }
 
 input[type=number]:focus {
-  /*border: 3px solid #555;*/
-  -webkit-transition: border 3px solid #555;
+  border: 3px solid #555;
 }
 
 input[type=text] {
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
+  -webkit-transition: all .2s ease-out;
+  -moz-transition: all .2s ease-out;
+  -ms-transition: all .2s ease-out;
+  -o-transition: all .2s ease-out;
+  transition: all .2s ease-out
 }
 
 input[type=number] {
   padding: 12px 12px;
   margin: 8px 0;
   box-sizing: border-box;
+  -webkit-transition: all .2s ease-out;
+  -moz-transition: all .2s ease-out;
+  -ms-transition: all .2s ease-out;
+  -o-transition: all .2s ease-out;
+  transition: all .2s ease-out
 }
 
 /*Heading Styles*/
