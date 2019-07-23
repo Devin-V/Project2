@@ -61,7 +61,7 @@ table, th, td {
 
 .button:active {
   background-color: #ddd;
-  transform: translateY(4px);
+  transform: translateY(20px);
 }
 
 /*Input Styles*/
