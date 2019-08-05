@@ -35,8 +35,8 @@ app.get('/page2', function(req, res){
 
 /**********************Page 3 Request*******************/
 app.get('/page3', function(req, res){
-console.log("received a request for /page3");
-res.render("page3.ejs");
+  console.log("received a request for /page3");
+  res.render("page3.ejs");
 });
 
 /*********************DB Update Request********************/
