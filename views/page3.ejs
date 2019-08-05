@@ -9,14 +9,14 @@
                 var canvas = document.getElementById("myCanvas");
                 canvas.width = canvas.width;
                 var ctx = canvas.getContext("2d");
-                ctx.lineWidth = 10;
                 ctx.beginPath();
                 ctx.moveTo(0, 0);
                 ctx.lineTo(0, 400);
                 ctx.lineTo(400, 400);
                 ctx.lineTo(400, 0);
                 ctx.lineTo(0, 0);
-                ctx.stroke;
+                ctx.lineWidth = 10;
+                ctx.stroke();
             }
 
         </script>
