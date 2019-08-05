@@ -33,6 +33,12 @@ app.get('/page2', function(req, res){
   res.render("page2.ejs");
 });
 
+/**********************Page 3 Request*******************/
+app.get('/page3', function(req, res){
+console.log("received a request for /page3");
+res.render("page3.ejs");
+});
+
 /*********************DB Update Request********************/
 app.post('/submit', updateManifest);
 
