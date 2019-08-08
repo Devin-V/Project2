@@ -24,9 +24,9 @@
                 ctx.stroke();
 
                 // Push edgeLines to the line Index
-                lineIndex.push([0,0,0,400,findSlope(0,0,0,400)]); //unsure how to handle
+                lineIndex.push([0,0,0,400]); //unsure how to handle 0 slope
                 lineIndex.push([0,400,400,400,0,find_yIntercept(0,400,0)]);
-                lineIndex.push([400,400,400,0,findSlope(400,400,400,0)]); // unsure how to handle
+                lineIndex.push([400,400,400,0]); // unsure how to handle 0 slope
                 lineIndex.push([400,0,0,0,0,find_yIntercept(400,0,0)]);
                 
                 // Make Variable Coordinates
@@ -113,7 +113,7 @@
 
                         // this compares the intersection to make sure it's part of the line segements
                         if(mutualX >= xsmall && mutualX <= xbig){
-                            console.log("lines " + i + "and lines " + j + "do intersect");
+                            console.log("lines " + i + " and lines " + j + "do intersect");
                         }
                     }
                 }
