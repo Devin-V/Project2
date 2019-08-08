@@ -79,7 +79,7 @@
         }
     
         // Call the event handler of the tool.
-        var func = tool[line];
+        var func = tool[ev.type];
         if (func) {
           func(ev);
         }
