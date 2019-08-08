@@ -6,6 +6,7 @@
             //Draw the edges of the canvas as lines
             function drawEdges()
             {
+                // Draw Edges
                 var canvas = document.getElementById("myCanvas");
                 canvas.width = canvas.width;
                 var ctx = canvas.getContext("2d");
@@ -18,15 +19,30 @@
                 ctx.lineWidth = 10;
                 ctx.stroke();
                 
+                // Make Variable Coordinates
                 var x;
                 var y;
 
+                // Track variable coordinates on mousemove relevant to canvas
                 canvas.onmousemove = function(event) {
                     x = event.pageX - this.offsetLeft;
                     y = event.pageY - this.offsetTop;
                 }
-                canvas.addEventListener("mousedown", function(){console.log('('+x+','+y+')');});
-                canvas.addEventListener("mouseup", function(){console.log('('+x+','+y+')');});
+
+                // function that gets called on mousedown in canvas
+                canvas.addEventListener("mousedown", function(){
+                    console.log('('+x+','+y+')');
+                    ctx.beginPath();
+                    ctx.moveTo(x,y);
+                });
+
+                // function that gets called on mouseup in canvas
+                canvas.addEventListener("mouseup", function(){
+                    console.log('('+x+','+y+')');
+                    ctx.lineTo(x,y);
+                    ctx.lineWidth = 10;
+                    ctx.stroke();
+                });
             }
         </script>
     </head>
