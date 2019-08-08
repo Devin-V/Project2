@@ -32,8 +32,7 @@
                 //console.log(lineIndex[0][3]);
                 
                 // Make Variable Coordinates
-                var x;
-                var y;
+                var x, y, xi, yi, xe, ye;
 
                 // Track variable coordinates on mousemove relevant to canvas
                 canvas.onmousemove = function(event) {
@@ -46,8 +45,8 @@
                     console.log('('+x+','+y+')');
                     ctx.beginPath();
                     ctx.moveTo(x,y);
-                    var xi = x;
-                    var yi = y;
+                    xi = x;
+                    yi = y;
                 });
 
                 // function that gets called on mouseup in canvas
@@ -56,8 +55,8 @@
                     ctx.lineTo(x,y);
                     ctx.lineWidth = 8;
                     ctx.stroke();
-                    var xe = x;
-                    var ye = y;
+                    xe = x;
+                    ye = y;
                     lineIndex.push([xi,yi,xe,ye])
                     console.log("stored line");
                     console.log(lineIndex[4][0]);
