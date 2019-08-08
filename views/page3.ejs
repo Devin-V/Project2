@@ -77,6 +77,11 @@
           ev._x = ev.offsetX;
           ev._y = ev.offsetY;
         }
+
+                // Activate the default tool.
+                if (tools[tool_default]) {
+          tool = new tools[tool_default]();
+        }
     
         // Call the event handler of the tool.
         var func = tool[ev.type];
