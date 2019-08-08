@@ -94,6 +94,7 @@
                 {
                     for(var j = i+1; j < lineIndex.length; j++)
                     {
+                        console.log("comparing Lines " + i + j);
                         var mutualX = ((lineIndex[j][5] - lineIndex[i][5])/(lineIndex[i][4] - lineIndex[j][4]));
                         // lines if not segments would meet at mutualX
                         // mutualX is yint2 - yint1 divided by slope1 - slope2
