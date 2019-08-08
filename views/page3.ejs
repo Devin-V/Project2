@@ -24,17 +24,17 @@
                 ctx.stroke();
 
                 // Push edgeLines to the line Index
-                lineIndex.push([0,0,0,400]); //unsure how to handle 0 slope
+                /*lineIndex.push([0,0,0,400]); //unsure how to handle 0 slope
                 lineIndex.push([0,400,400,400,0,find_yIntercept(0,400,0)]);
                 lineIndex.push([400,400,400,0]); // unsure how to handle 0 slope
-                lineIndex.push([400,0,0,0,0,find_yIntercept(400,0,0)]);
+                lineIndex.push([400,0,0,0,0,find_yIntercept(400,0,0)]);*/
                 
                 // Make Variable Coordinates
                 // x,y is current mouse location
                 // xi, yi is start location
                 // xe, ye is end location
                 var x, y, xi, yi, xe, ye;
-                var size = 4;
+                var size = 0;
 
                 // line Index layout
                 // 0 [xi,yi,xe,ye,slope,yInt]
@@ -72,7 +72,7 @@
                     console.log(lineIndex[size][3]);
                     console.log(lineIndex[size][4]);
                     console.log(lineIndex[size][5]);
-                    console.log("line " + size + "added");
+                    console.log("line " + size + " added");
                     size++;
                 });
             }
@@ -114,7 +114,7 @@
 
                         // this compares the intersection to make sure it's part of the line segements
                         if(mutualX >= xsmall && mutualX <= xbig){
-                            console.log("lines " + i + " and lines " + j + "do intersect");
+                            console.log("lines " + i + " and lines " + j + " do intersect");
                         }
                     }
                 }
