@@ -3,9 +3,13 @@
     <head>
         <link href="main.css" rel="stylesheet" type="text/css">
         <script>
+            // Global variable with lines
+            var lineIndex = []
+
             //Draw the edges of the canvas as lines
             function drawEdges()
             {
+
                 // Draw Edges
                 var canvas = document.getElementById("myCanvas");
                 canvas.width = canvas.width;
@@ -16,8 +20,15 @@
                 ctx.lineTo(400, 400);
                 ctx.lineTo(400, 0);
                 ctx.lineTo(0, 0);
-                ctx.lineWidth = 10;
+                ctx.lineWidth = 8;
                 ctx.stroke();
+
+                lineIndex.push([0,0,0,400]);
+                lineIndex.push([0,400,400,400]);
+                lineIndex.push([400,400,400,0]);
+                lineIndex.push([400,0,0,0]);
+
+                console.log(lineIndex);
                 
                 // Make Variable Coordinates
                 var x;
@@ -34,14 +45,18 @@
                     console.log('('+x+','+y+')');
                     ctx.beginPath();
                     ctx.moveTo(x,y);
+                    var xi = x;
+                    var yi = y;
                 });
 
                 // function that gets called on mouseup in canvas
                 canvas.addEventListener("mouseup", function(){
                     console.log('('+x+','+y+')');
                     ctx.lineTo(x,y);
-                    ctx.lineWidth = 10;
+                    ctx.lineWidth = 8;
                     ctx.stroke();
+                    var xe = x;
+                    var ye = y;
                 });
             }
         </script>
