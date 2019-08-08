@@ -23,16 +23,22 @@
                 ctx.stroke();
 
                 // Push edgeLines to the line Index
-                lineIndex.push([0,0,0,400]);
-                lineIndex.push([0,400,400,400]);
-                lineIndex.push([400,400,400,0]);
-                lineIndex.push([400,0,0,0]);
-
-                //console.log(lineIndex[0][3]);
+                lineIndex.push([0,0,0,400,findSlope(0,0,0,400)]);
+                lineIndex.push([0,400,400,400,findSlope(0,400,400,400)]);
+                lineIndex.push([400,400,400,0,findSlope(400,400,400,0)]);
+                lineIndex.push([400,0,0,0,findSlope(400,0,0,0)]);
                 
                 // Make Variable Coordinates
+                // x,y is current mouse location
+                // xi, yi is start location
+                // xe, ye is end location
                 var x, y, xi, yi, xe, ye;
                 var size = 4;
+
+                // line Index layout
+                // 0 [xi,yi,xe,ye,slope]
+                // 1 [xi,yi,xe,ye,slope]
+                // 2 [xi,yi,xe,ye,slope]
 
                 // Track variable coordinates on mousemove relevant to canvas
                 canvas.onmousemove = function(event) {
@@ -56,20 +62,25 @@
                     ctx.stroke();
                     xe = x;
                     ye = y;
-                    lineIndex.push([xi,yi,xe,ye])
+                    lineIndex.push([xi,yi,xe,ye,findSlope(xi,yi,xe,ye)]);
                     console.log("stored line");
                     console.log(lineIndex[size][0]);
                     console.log(lineIndex[size][1]);
                     console.log(lineIndex[size][2]);
                     console.log(lineIndex[size][3]);
                     size++;
-                    console.log("lineIndex.length = " + lineIndex.length);
                 });
             }
 
-            function findIntersections(){
-                // create an array of lines that are parallel
+            // function finds and returns the slope of the line segment
+            function findSlope(xi, yi, xe, ye){
+                var slope = ((ye - yi)/(xe -xi));
+                return slope;
+            }
 
+            function findIntersections(){
+                // still need to figure this out.
+                
             }
         </script>
     </head>
