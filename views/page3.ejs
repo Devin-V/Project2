@@ -3,13 +3,14 @@
     <head>
         <link href="main.css" rel="stylesheet" type="text/css">
         <script>
-            // Global variable with lines
-            var lineIndex = []
+            // Global array with line data
+            var lineIndex = [];
+            // Global array with intersection data
+            var lineIntersections = [];
 
             //Draw the edges of the canvas as lines
             function drawEdges()
             {
-
                 // Draw Edges
                 var canvas = document.getElementById("myCanvas");
                 canvas.width = canvas.width;
@@ -23,10 +24,10 @@
                 ctx.stroke();
 
                 // Push edgeLines to the line Index
-                lineIndex.push([0,0,0,400,findSlope(0,0,0,400)]);
-                lineIndex.push([0,400,400,400,findSlope(0,400,400,400)]);
-                lineIndex.push([400,400,400,0,findSlope(400,400,400,0)]);
-                lineIndex.push([400,0,0,0,findSlope(400,0,0,0)]);
+                lineIndex.push([0,0,0,400,findSlope(0,0,0,400)]); //unsure how to handle
+                lineIndex.push([0,400,400,400,0,find_yIntercept(0,400,0)]);
+                lineIndex.push([400,400,400,0,findSlope(400,400,400,0)]); // unsure how to handle
+                lineIndex.push([400,0,0,0,0,find_yIntercept(400,0,0)]);
                 
                 // Make Variable Coordinates
                 // x,y is current mouse location
@@ -36,9 +37,9 @@
                 var size = 4;
 
                 // line Index layout
-                // 0 [xi,yi,xe,ye,slope]
-                // 1 [xi,yi,xe,ye,slope]
-                // 2 [xi,yi,xe,ye,slope]
+                // 0 [xi,yi,xe,ye,slope,yInt]
+                // 1 [xi,yi,xe,ye,slope,yInt]
+                // 2 [xi,yi,xe,ye,slope,yInt]
 
                 // Track variable coordinates on mousemove relevant to canvas
                 canvas.onmousemove = function(event) {
@@ -62,13 +63,15 @@
                     ctx.stroke();
                     xe = x;
                     ye = y;
-                    lineIndex.push([xi,yi,xe,ye,findSlope(xi,yi,xe,ye)]);
+                    var slope = findSlope(xi,yi,xe,ye);
+                    lineIndex.push([xi,yi,xe,ye,slope,find_yIntercept(xi,yi,slope)]);
                     console.log("stored line");
                     console.log(lineIndex[size][0]);
                     console.log(lineIndex[size][1]);
                     console.log(lineIndex[size][2]);
                     console.log(lineIndex[size][3]);
                     console.log(lineIndex[size][4]);
+                    console.log(lineIndex[size][5]);
                     size++;
                 });
             }
@@ -79,9 +82,41 @@
                 return slope;
             }
 
+            function find_yIntercept(xi,yi,slope){
+                var yIntercept = (yi + (slope * xi));
+                return yIntercept;
+            }
+
             function findIntersections(){
                 // still need to figure this out.
-                
+                for (var i = 0; i < lineIndex.length; i++)
+                {
+                    for(var j = i+1; j < lineIndex.length; j++)
+                    {
+                        var mutualX = ((lineIndex[j][5] - lineIndex[i][5])/(lineIndex[i][4] - lineIndex[j][4]));
+                        // lines if not segments would meet at mutualX
+                        // mutualX is yint2 - yint1 divided by slope1 - slope2
+                        var xbig;
+                        var xsmall;
+                        var xsame = false;
+
+                        // this sorts out what is the range of the acceptable x values
+                        if(lineIndex[i][0] > lineIndex[i][2]){
+                            xbig = lineIndex[i][0];
+                            xsmall = lineIndex[i][2];
+                        } else if (lineIndex[i][0] == lineIndex[i][2]) {
+                            xsame = true;
+                        } else {
+                            xbig = lineIndex[i][2];
+                            xsmall = lineIndex[i][0];
+                        }
+
+                        // this compares the intersection to make sure it's part of the line segements
+                        if(mutualX >= xsmall && mutualX <= xbig){
+                            console.log("lines " + i + "and lines " + j + "do intersect");
+                        }
+                    }
+                }
             }
         </script>
     </head>
@@ -97,5 +132,6 @@
         <div class="boxCanvas">
             <canvas id="myCanvas" width="400" height="400"></canvas>
         </div>
+        <button onclick="findIntersections();">Find intersections</button>
     </body>
 </html>
