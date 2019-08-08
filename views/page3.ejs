@@ -17,6 +17,9 @@
                 ctx.lineTo(0, 0);
                 ctx.lineWidth = 10;
                 ctx.stroke();
+
+                canvas.addEventListener("mousedown", function(){console.log("mousedown");});
+                canvas.addEventListener("mouseup", function(){console.log("mouseup");});
             }
         </script>
     </head>
