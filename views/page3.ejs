@@ -79,8 +79,9 @@
         }
     
         // Call the event handler of the tool.
+        var func = tool[line];
         if (func) {
-          func(line);
+          func(ev);
         }
       }
     
