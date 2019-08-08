@@ -17,9 +17,16 @@
                 ctx.lineTo(0, 0);
                 ctx.lineWidth = 10;
                 ctx.stroke();
+                
+                var x;
+                var y;
 
-                canvas.addEventListener("mousedown", function(){console.log("mousedown");});
-                canvas.addEventListener("mouseup", function(){console.log("mouseup");});
+                canvas.onmousemove = function(event) {
+                    x = event.pageX - this.offsetLeft;
+                    y = event.pageY - this.offsetTop;
+                }
+                canvas.addEventListener("mousedown", function(){console.log('('+x+','+y+')');});
+                canvas.addEventListener("mouseup", function(){console.log('('+x+','+y+')');});
             }
         </script>
     </head>
