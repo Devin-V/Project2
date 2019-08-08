@@ -33,6 +33,7 @@
                 
                 // Make Variable Coordinates
                 var x, y, xi, yi, xe, ye;
+                var size = 4;
 
                 // Track variable coordinates on mousemove relevant to canvas
                 canvas.onmousemove = function(event) {
@@ -59,11 +60,11 @@
                     ye = y;
                     lineIndex.push([xi,yi,xe,ye])
                     console.log("stored line");
-                    var size = lineIndex.length;
                     console.log(lineIndex[size][0]);
                     console.log(lineIndex[size][1]);
                     console.log(lineIndex[size][2]);
                     console.log(lineIndex[size][3]);
+                    size++;
                 });
             }
         </script>
