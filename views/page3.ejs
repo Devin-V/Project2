@@ -23,12 +23,13 @@
                 ctx.lineWidth = 8;
                 ctx.stroke();
 
+                // Push edgeLines to the line Index
                 lineIndex.push([0,0,0,400]);
                 lineIndex.push([0,400,400,400]);
                 lineIndex.push([400,400,400,0]);
                 lineIndex.push([400,0,0,0]);
 
-                console.log(lineIndex[0][3]);
+                //console.log(lineIndex[0][3]);
                 
                 // Make Variable Coordinates
                 var x;
@@ -57,6 +58,12 @@
                     ctx.stroke();
                     var xe = x;
                     var ye = y;
+                    lineIndex.push([xi,yi,xe,ye])
+                    console.log("stored line");
+                    console.log(lineIndex[4][0]);
+                    console.log(lineIndex[4][1]);
+                    console.log(lineIndex[4][2]);
+                    console.log(lineIndex[4][3]);
                 });
             }
         </script>
