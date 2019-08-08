@@ -20,7 +20,6 @@
                 ctx.lineTo(400, 400);
                 ctx.lineTo(400, 0);
                 ctx.lineTo(0, 0);
-                ctx.lineWidth = 8;
                 ctx.stroke();
 
                 // Push edgeLines to the line Index
@@ -54,7 +53,6 @@
                 canvas.addEventListener("mouseup", function(){
                     console.log('('+x+','+y+')');
                     ctx.lineTo(x,y);
-                    ctx.lineWidth = 8;
                     ctx.stroke();
                     xe = x;
                     ye = y;
@@ -65,7 +63,13 @@
                     console.log(lineIndex[size][2]);
                     console.log(lineIndex[size][3]);
                     size++;
+                    console.log("lineIndex.length = " + lineIndex.length);
                 });
+            }
+
+            function findIntersections(){
+                // create an array of lines that are parallel
+
             }
         </script>
     </head>
