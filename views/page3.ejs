@@ -6,7 +6,7 @@
             // Global array with line data
             var lineIndex = [];
             // Global array with intersection data
-            var lineIntersections = [];
+            var intersectionIndex = [];
 
             //Draw the edges of the canvas as lines
             function drawEdges()
@@ -88,12 +88,10 @@
                 return yIntercept;
             }
 
-            function findIntersections(){
+            function findTriangles(){
                 // still need to figure this out.
-                for (var i = 0; i < lineIndex.length; i++)
-                {
-                    for(var j = i+1; j < lineIndex.length; j++)
-                    {
+                for (var i = 0; i < lineIndex.length; i++){
+                    for(var j = i+1; j < lineIndex.length; j++){
                         console.log("comparing Lines " + i + j);
                         var mutualX = ((lineIndex[j][5] - lineIndex[i][5])/(lineIndex[i][4] - lineIndex[j][4]));
                         // lines if not segments would meet at mutualX
@@ -116,9 +114,24 @@
                         // this compares the intersection to make sure it's part of the line segements
                         if(mutualX >= xsmall && mutualX <= xbig){
                             console.log("lines " + i + " and lines " + j + " do intersect");
+                            // push intersections into an array
+                            intersectionIndex.push([i,j]);
                         }
                     }
                 }
+                var totalTriangles = 0;
+                for (var i = 0; i < intersectionIndex.length; i++){
+                    for (var j = 0; j < intersectionIndex.length; j++){
+                        if (intersectionIndex[i][1] == intersectionIndex[j][0]){
+                            for (var k = 0; k < intersectionIndex.length; k++){
+                                if (intersectionIndex[j][1] == intersectionIndex[k][1]){
+                                    totalTriangles++;
+                                }
+                            }
+                        }
+                    }
+                }
+                console.log("totalTriangles = " + totalTriangles);
             }
         </script>
     </head>
@@ -134,6 +147,6 @@
         <div class="boxCanvas">
             <canvas id="myCanvas" width="400" height="400"></canvas>
         </div>
-        <button onclick="findIntersections();">Find intersections</button>
+        <button onclick="findTriangles();">Find triangles</button>
     </body>
 </html>
