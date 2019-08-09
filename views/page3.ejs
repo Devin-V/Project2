@@ -122,7 +122,7 @@
                 var totalTriangles = 0;
                 for (var i = 0; i < intersectionIndex.length; i++){
                     for (var j = 0; j < intersectionIndex.length; j++){
-                        if (intersectionIndex[i][1] == intersectionIndex[j][0]){
+                        if (intersectionIndex[j][0] == intersectionIndex[i][1]){
                             for (var k = 0; k < intersectionIndex.length; k++){
                                 if (intersectionIndex[j][1] == intersectionIndex[k][1]){
                                     totalTriangles++;
