@@ -65,7 +65,6 @@
                     ye = y;
                     var slope = findSlope(xi,yi,xe,ye);
                     lineIndex.push([xi,yi,xe,ye,slope,find_yIntercept(xi,yi,slope)]);
-                    console.log("stored line");
                     console.log(lineIndex[size][0]);
                     console.log(lineIndex[size][1]);
                     console.log(lineIndex[size][2]);
@@ -122,12 +121,7 @@
                 var totalTriangles = 0;
                 for (var i = 0; i < intersectionIndex.length; i++){
                     for (var j = 0; j < intersectionIndex.length; j++){
-                        if (intersectionIndex[j][0] == intersectionIndex[i][1]){
-                            for (var k = 0; k < intersectionIndex.length; k++){
-                                if (intersectionIndex[j][1] == intersectionIndex[k][1] && j != k){
-                                    totalTriangles++;
-                                }
-                            }
+                        if ()
                         }
                     }
                 }
