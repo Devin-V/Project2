@@ -120,7 +120,20 @@
                     }
                 }
                 var totalTriangles = 0;
+                var tempContainer = [];
+
+                for (var i = 0; i < intersectionIndex.length; i++){
+                    if (intersectionIndex[i][0] == intersectionIndex[i+1][0]){
+                        tempContainer.push(intersectionIndex[i][1]);
+                    } else if (intersectionIndex[i][0] != intersectionIndex[i+1][0] && intersectionIndex[i][0] == intersectionIndex[i-1][0]){
+                        tempContainer.push(intersectionIndex[i][0]);
+                    }
+                    console.log("tempContainer");
+                    console.log(JSON.stringify(tempContainer));
+                }
+
                 console.log("totalTriangles = " + totalTriangles);
+                console.log("intersection index:");
                 console.log(JSON.stringify(intersectionIndex));
             }
         </script>
