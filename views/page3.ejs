@@ -15,13 +15,13 @@
                 var canvas = document.getElementById("myCanvas");
                 canvas.width = canvas.width;
                 var ctx = canvas.getContext("2d");
-                ctx.beginPath();
+                /*ctx.beginPath();
                 ctx.moveTo(0, 0);
                 ctx.lineTo(0, 400);
                 ctx.lineTo(400, 400);
                 ctx.lineTo(400, 0);
                 ctx.lineTo(0, 0);
-                ctx.stroke();
+                ctx.stroke();*/
 
                 // Push edgeLines to the line Index
                 /*lineIndex.push([0,0,0,400]); //unsure how to handle 0 slope
@@ -147,10 +147,7 @@
                     tempContainer = [];
                 }
 
-
-                console.log("totalTriangles = " + totalTriangles);
-                console.log("intersection index:");
-                console.log(JSON.stringify(intersectionIndex));
+                // Spit out the number of triangles on an empty div
                 var str = "The total number of triangles is: " + totalTriangles;
                 document.getElementById("answer").innerHTML = str;
             }
