@@ -120,6 +120,17 @@
                     }
                 }
 
+                // remove duplicates in intersectionIndex
+                for (var i = 0; i < intersectionIndex.length; i++){
+                    for(var j = 0; j < intersectionIndex.length; j++){
+                        if(intersectionIndex[i][0] == intersectionIndex[j][0]
+                        && intersectionIndex[i][1] == intersectionIndex[j][1]
+                        && i != j){
+                            intersectionIndex.splice(j, 1);
+                        }
+                    }
+                }
+
                 var totalTriangles = 0;
                 var tempContainer = [];
 
