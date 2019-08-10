@@ -144,8 +144,6 @@
                             }
                         }
                     }
-                    console.log("tempContainer");
-                    console.log(JSON.stringify(tempContainer));
                     tempContainer = [];
                 }
 
@@ -153,6 +151,8 @@
                 console.log("totalTriangles = " + totalTriangles);
                 console.log("intersection index:");
                 console.log(JSON.stringify(intersectionIndex));
+                var str = "The total number of triangles is: " + totalTriangles;
+                document.getElementById("answer").innerHTML = str;
             }
         </script>
     </head>
@@ -169,5 +169,6 @@
             <canvas id="myCanvas" width="400" height="400"></canvas>
         </div>
         <button onclick="findTriangles();">Find triangles</button>
+        <div id="answer"></div>
     </body>
 </html>
