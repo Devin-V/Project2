@@ -119,6 +119,15 @@
                         }
                     }
                 }
+
+                var l = intersectionIndex.length-1, prev='';
+                do {
+                    if (intersectionIndex[l].join('/') === prev) {
+                        intersectionIndex.splice(l,1);
+                    }
+                    prev = intersectionIndex[l].join('/');
+                } while (l-- && l>-1);
+
                 var totalTriangles = 0;
                 var tempContainer = [];
 
