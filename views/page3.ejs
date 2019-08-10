@@ -116,10 +116,9 @@
                             console.log("lines " + i + " and lines " + j + " do intersect");
                             // push intersections into an array
                             for(var g = 0; g < intersectionIndex.length; g++){
-                                for(var h = 0; h < intersectionIndex.length; h++){
-                                    if(intersectionIndex[h][0] != i && intersectionIndex[h][1] != j){
-                                        intersectionIndex.push([i,j]);
-                                    }
+                                if(intersectionIndex[g][0] != i && intersectionIndex[g][1] != j){
+                                    intersectionIndex.push([i,j]);
+                                }
                                 }
                             }
                         }
