@@ -116,7 +116,7 @@
                         if(mutualX >= xsmall && mutualX <= xbig){
                             console.log("lines " + i + " and lines " + j + " do intersect");
                             // push intersections into an array
-                                intersectionIndex.push([i,j]);
+                            intersectionIndex.push([i,j]);
                         }
                     }
                 }
@@ -145,6 +145,13 @@
                         }
                     }
                     // find pairs and add to triangle count then clear container
+                    for (var k = 0; k < tempContainer.length; k++){
+                        for(var l = 0; l < tempContainer.length; l++){
+                            if (tempContainer[k] == tempContainer[l] && k != l){
+                                totalTriangles++;
+                            }
+                        }
+                    }
                     console.log("tempContainer");
                     console.log(JSON.stringify(tempContainer));
                     tempContainer = [];
