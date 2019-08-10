@@ -115,7 +115,7 @@
                         if(mutualX >= xsmall && mutualX <= xbig){
                             console.log("lines " + i + " and lines " + j + " do intersect");
                             // push intersections into an array
-                            if (intersectionIndex.length > 0){
+                            if (intersectionIndex.length != 0){
                                 for (var g = 0; g < intersectionIndex.length; g++){
                                     if (intersectionIndex[g][0] != i && intersectionIndex[g][1] != j){
                                         intersectionIndex.push([i,j]);
