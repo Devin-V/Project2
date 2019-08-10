@@ -23,12 +23,6 @@
                 ctx.lineTo(0, 0);
                 ctx.stroke();
 
-                // Push edgeLines to the line Index
-                /*lineIndex.push([0,0,0,400]); //unsure how to handle 0 slope
-                lineIndex.push([0,400,400,400,0,find_yIntercept(0,400,0)]);
-                lineIndex.push([400,400,400,0]); // unsure how to handle 0 slope
-                lineIndex.push([400,0,0,0,0,find_yIntercept(400,0,0)]);*/
-                
                 // Make Variable Coordinates
                 // x,y is current mouse location
                 // xi, yi is start location
@@ -89,23 +83,62 @@
                         var mutualX = ((lineIndex[j][5] - lineIndex[i][5])/(lineIndex[i][4] - lineIndex[j][4]));
                         // lines if not segments would meet at mutualX
                         // mutualX is yint2 - yint1 divided by slope1 - slope2
-                        var xbig;
-                        var xsmall;
-                        var xsame = false;
+                        // (mutualX, mutualY) is where the lines would intersect if they weren't segements.
+                        var mutualY = ((lineIndex[i][4] * mutualX) + lineIndex[i][5]);
+                        var xbig1, xbig2, xsmall1, xsmall2;
+                        var ybig1, ybig2, ysmall1, ysmall2;
+                        var xsame1, xsame2, ysame1, ysame2;
+                        xsame1 = xsame2 = ysame1 = ysame2 = false;
 
-                        // this sorts out what is the range of the acceptable x values
+                        // this sorts out what is the range of the acceptable x values for line1
                         if(lineIndex[i][0] > lineIndex[i][2]){
-                            xbig = lineIndex[i][0];
-                            xsmall = lineIndex[i][2];
+                            xbig1 = lineIndex[i][0];
+                            xsmall1 = lineIndex[i][2];
                         } else if (lineIndex[i][0] == lineIndex[i][2]) {
-                            xsame = true;
+                            xsame1 = true;
                         } else {
-                            xbig = lineIndex[i][2];
-                            xsmall = lineIndex[i][0];
+                            xbig1 = lineIndex[i][2];
+                            xsmall1 = lineIndex[i][0];
+                        }
+
+                        // this sorts out what is the range of the acceptable x values for line2
+                        if(lineIndex[j][0] > lineIndex[j][2]){
+                            xbig2 = lineIndex[j][0];
+                            xsmall2 = lineIndex[j][2];
+                        } else if (lineIndex[j][0] == lineIndex[j][2]) {
+                            xsame2 = true;
+                        } else {
+                            xbig2 = lineIndex[j][2];
+                            xsmall2 = lineIndex[j][0];
+                        }
+
+                        // this sorts out what is the range of the acceptable y values for line1
+                        if(lineIndex[i][1] > lineIndex[i][3]){
+                            ybig1 = lineIndex[i][1];
+                            ysmall1 = lineIndex[i][3];
+                        } else if (lineIndex[i][1] == lineIndex[i][3]) {
+                            ysame1 = true;
+                        } else {
+                            ybig1 = lineIndex[i][3];
+                            ysmall1 = lineIndex[i][1];
+                        }
+
+                        // this sorts out what is the range of the acceptable y values for line2
+                        if(lineIndex[i][1] > lineIndex[i][3]){
+                            ybig2 = lineIndex[i][1];
+                            ysmall2 = lineIndex[i][3];
+                        } else if (lineIndex[i][1] == lineIndex[i][3]) {
+                            ysame2 = true;
+                        } else {
+                            ybig2 = lineIndex[i][3];
+                            ysmall2 = lineIndex[i][1];
                         }
 
                         // this compares the intersection to make sure it's part of the line segements
-                        if(mutualX >= xsmall && mutualX <= xbig){
+                        if(mutualX >= xsmall1 && mutualX <= xbig1
+                        && mutualX >= xsmall2 && mutualX <= xbig2
+                        && mutualY >= ysmall1 && mutualY <= ybig1
+                        && mutualY >= ysmall2 && mutualY <= ybig2){
                             // push intersections into an array
                             intersectionIndex.push([i,j]);
                         }
