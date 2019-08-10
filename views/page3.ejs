@@ -115,18 +115,18 @@
                         if(mutualX >= xsmall && mutualX <= xbig){
                             console.log("lines " + i + " and lines " + j + " do intersect");
                             // push intersections into an array
-                                    intersectionIndex.push([i,j]);
+                            if (intersectionIndex.length > 0){
+                                for (var g = 0; g < intersectionIndex.length; g++){
+                                    if (intersectionIndex[g][0] != i && intersectionIndex[g][1] != j){
+                                        intersectionIndex.push([i,j]);
+                                    }
+                                }
+                            } else {
+                                intersectionIndex.push([i,j]);
+                            }
                         }
                     }
                 }
-
-                var l = intersectionIndex.length-1, prev='';
-                do {
-                    if (intersectionIndex[l].join('/') === prev) {
-                        intersectionIndex.splice(l,1);
-                    }
-                    prev = intersectionIndex[l].join('/');
-                } while (l-- && l>-1);
 
                 var totalTriangles = 0;
                 var tempContainer = [];
