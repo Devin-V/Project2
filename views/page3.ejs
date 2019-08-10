@@ -89,7 +89,7 @@
             }
 
             function findTriangles(){
-                intersectionIndex = [];
+                intersectionIndex.splice(0,intersectionIndex.length);
                 // finds intersections and stores them
                 for (var i = 0; i < lineIndex.length; i++){
                     for(var j = i+1; j < lineIndex.length; j++){
