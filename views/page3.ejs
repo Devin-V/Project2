@@ -139,12 +139,14 @@
                             if (tempContainer[k] == tempContainer[l] && k != l){
                                 console.log("var k = " + tempContainer[k]);
                                 console.log("var l = " + tempContainer[l]);
+                                console.log("var k value = " + k);
+                                console.log("var l value = " + l);
+                                console.log("tempContainer");
+                                console.log(JSON.stringify(tempContainer));
                                 totalTriangles++;
                             }
                         }
                     }
-                    console.log("tempContainer");
-                    console.log(JSON.stringify(tempContainer));
                     tempContainer = [];
                 }
 
