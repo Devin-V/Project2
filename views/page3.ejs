@@ -65,13 +65,6 @@
                     ye = y;
                     var slope = findSlope(xi,yi,xe,ye);
                     lineIndex.push([xi,yi,xe,ye,slope,find_yIntercept(xi,yi,slope)]);
-                    console.log("stored line");
-                    console.log(lineIndex[size][0]);
-                    console.log(lineIndex[size][1]);
-                    console.log(lineIndex[size][2]);
-                    console.log(lineIndex[size][3]);
-                    console.log(lineIndex[size][4]);
-                    console.log(lineIndex[size][5]);
                     console.log("line " + size + " added");
                     size++;
                 });
@@ -93,7 +86,6 @@
                 // finds intersections and stores them
                 for (var i = 0; i < lineIndex.length; i++){
                     for(var j = i+1; j < lineIndex.length; j++){
-                        console.log("comparing Lines " + i + j);
                         var mutualX = ((lineIndex[j][5] - lineIndex[i][5])/(lineIndex[i][4] - lineIndex[j][4]));
                         // lines if not segments would meet at mutualX
                         // mutualX is yint2 - yint1 divided by slope1 - slope2
@@ -114,7 +106,6 @@
 
                         // this compares the intersection to make sure it's part of the line segements
                         if(mutualX >= xsmall && mutualX <= xbig){
-                            console.log("lines " + i + " and lines " + j + " do intersect");
                             // push intersections into an array
                             intersectionIndex.push([i,j]);
                         }
@@ -148,6 +139,8 @@
                     for (var k = 0; k < tempContainer.length; k++){
                         for(var l = 0; l < tempContainer.length; l++){
                             if (tempContainer[k] == tempContainer[l] && k != l){
+                                console.log("var k = " + k);
+                                console.log("var l = " + l);
                                 totalTriangles++;
                             }
                         }
