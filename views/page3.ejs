@@ -59,6 +59,8 @@
                 canvas.addEventListener("mouseup", function(){
                     ctx.lineTo(x,y);
                     ctx.stroke();
+                    if(x == 400){x = x -2;}
+                    if(x == xi){x = x + 1;}
                     xe = x;
                     ye = y;
                     var slope = findSlope(xi,yi,xe,ye);
