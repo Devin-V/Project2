@@ -124,10 +124,10 @@
 
                 for (var i = 0; i < intersectionIndex.length; i++){
                     for (var j = 0; j < intersectionIndex.length; j++){
-                        if(intersectionIndex[i][0] == intersectionIndex[j][1]){
+                        if(intersectionIndex[i][0] == intersectionIndex[j][1] && i != j){
                             tempContainer.push(intersectionIndex[j][0]);
                         }
-                        if(intersectionIndex[i][1] == intersectionIndex[j][1]){
+                        if(intersectionIndex[i][1] == intersectionIndex[j][1] && i != j){
                             tempContainer.push(intersectionIndex[j][0]);
                         }
                     }
