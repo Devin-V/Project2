@@ -137,12 +137,7 @@
                     for (var k = 0; k < tempContainer.length; k++){
                         for(var l = 0; l < tempContainer.length; l++){
                             if (tempContainer[k] == tempContainer[l] && k != l){
-                                console.log("var k = " + tempContainer[k]);
-                                console.log("var l = " + tempContainer[l]);
-                                console.log("var k value = " + k);
-                                console.log("var l value = " + l);
-                                console.log("tempContainer");
-                                console.log(JSON.stringify(tempContainer));
+                                tempContainer.splice(k,1);
                                 totalTriangles++;
                             }
                         }
