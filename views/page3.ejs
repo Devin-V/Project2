@@ -76,15 +76,17 @@
             }
 
             function findTriangles(){
+                // clear previous uses of the function
                 intersectionIndex.splice(0,intersectionIndex.length);
                 // finds intersections and stores them
                 for (var i = 0; i < lineIndex.length; i++){
                     for(var j = i+1; j < lineIndex.length; j++){
+                        // find the mutual x & y where the lines would cross if they weren't line segments
+                        // mutual x is yint2 - yint1 divided by slope1 - slope2
                         var mutualX = ((lineIndex[j][5] - lineIndex[i][5])/(lineIndex[i][4] - lineIndex[j][4]));
-                        // lines if not segments would meet at mutualX
-                        // mutualX is yint2 - yint1 divided by slope1 - slope2
-                        // (mutualX, mutualY) is where the lines would intersect if they weren't segements.
                         var mutualY = ((lineIndex[i][4] * mutualX) + lineIndex[i][5]);
+
+                        // create variables to check bounds of hypothetical intersection
                         var xbig1, xbig2, xsmall1, xsmall2;
                         var ybig1, ybig2, ysmall1, ysmall2;
                         var xsame1, xsame2, ysame1, ysame2;
@@ -156,9 +158,11 @@
                     }
                 }
 
+                // create variables for triangle count & a temp storage for intermediate calculations
                 var totalTriangles = 0;
                 var tempContainer = [];
 
+                // Loop through each intersection and add it to a temp container to search for pairs
                 for (var i = 0; i < intersectionIndex.length; i++){
                     for (var j = 0; j < intersectionIndex.length; j++){
                         if(intersectionIndex[i][0] == intersectionIndex[j][1] && i != j){
@@ -177,13 +181,10 @@
                             }
                         }
                     }
+                    // clear the temporary container to check the next pairing
                     tempContainer = [];
                 }
-
-
-                console.log("totalTriangles = " + totalTriangles);
-                console.log("intersection index:");
-                console.log(JSON.stringify(intersectionIndex));
+                // print total to screen
                 var str = "The total number of triangles is: " + totalTriangles;
                 document.getElementById("answer").innerHTML= str;
             }
@@ -201,12 +202,15 @@
         <div class="boxCanvas">
             <canvas id="myCanvas" width="400" height="400"></canvas>
         </div>
+        <!-- Call triangle calculation function and print answer -->
         <button onclick="findTriangles();">Find triangles</button>
         <div id="answer"></div>
         <div style="clear:both;"></div>
+        <!-- UI information -->
         <p> The edges of the canvas are not lines.<br>
-            it's calculated to the pixel so more than 2 lines crossing at the same "point"<br>
-            will usually make a triangle since its so easy to be off
+            It's calculated to the pixel so more than 2 lines crossing at the same "point"<br>
+            will usually make a triangle since its so easy to be off<br>
+            <a href="https://github.com/Devin-V/Project2/blob/master/views/page3.ejs">github repository here</a>
         </p>
     </body>
 </html>
