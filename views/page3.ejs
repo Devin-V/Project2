@@ -25,8 +25,8 @@
 
                 // Make Variable Coordinates
                 // x,y is current mouse location
-                // xi, yi is start location
-                // xe, ye is end location
+                // xi, yi is start location of line
+                // xe, ye is end location of line
                 var x, y, xi, yi, xe, ye;
                 var size = 0;
 
@@ -70,6 +70,7 @@
                 return slope;
             }
 
+            // function finds and returns the y-intercept of the line segment
             function find_yIntercept(xi,yi,slope){
                 var yIntercept = (yi - (slope * xi));
                 return yIntercept;
