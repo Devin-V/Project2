@@ -1,217 +1,219 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link href="main.css" rel="stylesheet" type="text/css">
-        <script>
-            // Global array with line data
-            var lineIndex = [];
-            // Global array with intersection data
-            var intersectionIndex = [];
 
-            //Draw the edges of the canvas as lines
-            function drawEdges()
-            {
-                // Draw Edges
-                var canvas = document.getElementById("myCanvas");
-                canvas.width = canvas.width;
-                var ctx = canvas.getContext("2d");
+<head>
+    <link href="main.css" rel="stylesheet" type="text/css">
+    <script>
+        // Global array with line data
+        var lineIndex = [];
+        // Global array with intersection data
+        var intersectionIndex = [];
+
+        //Draw the edges of the canvas as lines
+        function drawEdges() {
+            // Draw Edges
+            var canvas = document.getElementById("myCanvas");
+            canvas.width = canvas.width;
+            var ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(0, 400);
+            ctx.lineTo(400, 400);
+            ctx.lineTo(400, 0);
+            ctx.lineTo(0, 0);
+            ctx.stroke();
+
+            // Make Variable Coordinates
+            // x,y is current mouse location
+            // xi, yi is start location of line
+            // xe, ye is end location of line
+            var x, y, xi, yi, xe, ye;
+            var size = 0;
+
+            // line Index layout
+            // 0 [xi,yi,xe,ye,slope,yInt]
+            // 1 [xi,yi,xe,ye,slope,yInt]
+            // 2 [xi,yi,xe,ye,slope,yInt]
+
+            // Track variable coordinates on mousemove relevant to canvas
+            canvas.onmousemove = function (event) {
+                x = event.pageX - this.offsetLeft;
+                y = event.pageY - this.offsetTop;
+            }
+
+            // function that gets called on mousedown in canvas
+            canvas.addEventListener("mousedown", function () {
                 ctx.beginPath();
-                ctx.moveTo(0, 0);
-                ctx.lineTo(0, 400);
-                ctx.lineTo(400, 400);
-                ctx.lineTo(400, 0);
-                ctx.lineTo(0, 0);
+                ctx.moveTo(x, y);
+                xi = x;
+                yi = y;
+            });
+
+            // function that gets called on mouseup in canvas
+            canvas.addEventListener("mouseup", function () {
+                ctx.lineTo(x, y);
                 ctx.stroke();
+                if (x == 400) { x = x - 2; }
+                if (x == xi) { x = x + 1; }
+                xe = x;
+                ye = y;
+                var slope = findSlope(xi, yi, xe, ye);
+                lineIndex.push([xi, yi, xe, ye, slope, find_yIntercept(xi, yi, slope)]);
+                console.log("line " + size + " added");
+                size++;
+            });
+        }
 
-                // Make Variable Coordinates
-                // x,y is current mouse location
-                // xi, yi is start location of line
-                // xe, ye is end location of line
-                var x, y, xi, yi, xe, ye;
-                var size = 0;
+        // function finds and returns the slope of the line segment
+        function findSlope(xi, yi, xe, ye) {
+            var slope = ((ye - yi) / (xe - xi));
+            return slope;
+        }
 
-                // line Index layout
-                // 0 [xi,yi,xe,ye,slope,yInt]
-                // 1 [xi,yi,xe,ye,slope,yInt]
-                // 2 [xi,yi,xe,ye,slope,yInt]
+        // function finds and returns the y-intercept of the line segment
+        function find_yIntercept(xi, yi, slope) {
+            var yIntercept = (yi - (slope * xi));
+            return yIntercept;
+        }
 
-                // Track variable coordinates on mousemove relevant to canvas
-                canvas.onmousemove = function(event) {
-                    x = event.pageX - this.offsetLeft;
-                    y = event.pageY - this.offsetTop;
-                }
+        function findTriangles() {
+            // clear previous uses of the function
+            intersectionIndex.splice(0, intersectionIndex.length);
+            // finds intersections and stores them
+            for (var i = 0; i < lineIndex.length; i++) {
+                for (var j = i + 1; j < lineIndex.length; j++) {
+                    // find the mutual x & y where the lines would cross if they weren't line segments
+                    // mutual x is yint2 - yint1 divided by slope1 - slope2
+                    var mutualX = ((lineIndex[j][5] - lineIndex[i][5]) / (lineIndex[i][4] - lineIndex[j][4]));
+                    var mutualY = ((lineIndex[i][4] * mutualX) + lineIndex[i][5]);
 
-                // function that gets called on mousedown in canvas
-                canvas.addEventListener("mousedown", function(){
-                    ctx.beginPath();
-                    ctx.moveTo(x,y);
-                    xi = x;
-                    yi = y;
-                });
+                    // create variables to check bounds of hypothetical intersection
+                    var xbig1, xbig2, xsmall1, xsmall2;
+                    var ybig1, ybig2, ysmall1, ysmall2;
+                    var xsame1, xsame2, ysame1, ysame2;
+                    xsame1 = xsame2 = ysame1 = ysame2 = false;
 
-                // function that gets called on mouseup in canvas
-                canvas.addEventListener("mouseup", function(){
-                    ctx.lineTo(x,y);
-                    ctx.stroke();
-                    if(x == 400){x = x -2;}
-                    if(x == xi){x = x + 1;}
-                    xe = x;
-                    ye = y;
-                    var slope = findSlope(xi,yi,xe,ye);
-                    lineIndex.push([xi,yi,xe,ye,slope,find_yIntercept(xi,yi,slope)]);
-                    console.log("line " + size + " added");
-                    size++;
-                });
-            }
+                    // this sorts out what is the range of the acceptable x values for line1
+                    if (lineIndex[i][0] > lineIndex[i][2]) {
+                        xbig1 = lineIndex[i][0];
+                        xsmall1 = lineIndex[i][2];
+                    } else if (lineIndex[i][0] == lineIndex[i][2]) {
+                        xsame1 = true;
+                    } else {
+                        xbig1 = lineIndex[i][2];
+                        xsmall1 = lineIndex[i][0];
+                    }
 
-            // function finds and returns the slope of the line segment
-            function findSlope(xi, yi, xe, ye){
-                var slope = ((ye - yi)/(xe -xi));
-                return slope;
-            }
+                    // this sorts out what is the range of the acceptable x values for line2
+                    if (lineIndex[j][0] > lineIndex[j][2]) {
+                        xbig2 = lineIndex[j][0];
+                        xsmall2 = lineIndex[j][2];
+                    } else if (lineIndex[j][0] == lineIndex[j][2]) {
+                        xsame2 = true;
+                    } else {
+                        xbig2 = lineIndex[j][2];
+                        xsmall2 = lineIndex[j][0];
+                    }
 
-            // function finds and returns the y-intercept of the line segment
-            function find_yIntercept(xi,yi,slope){
-                var yIntercept = (yi - (slope * xi));
-                return yIntercept;
-            }
+                    // this sorts out what is the range of the acceptable y values for line1
+                    if (lineIndex[i][1] > lineIndex[i][3]) {
+                        ybig1 = lineIndex[i][1];
+                        ysmall1 = lineIndex[i][3];
+                    } else if (lineIndex[i][1] == lineIndex[i][3]) {
+                        ysame1 = true;
+                    } else {
+                        ybig1 = lineIndex[i][3];
+                        ysmall1 = lineIndex[i][1];
+                    }
 
-            function findTriangles(){
-                // clear previous uses of the function
-                intersectionIndex.splice(0,intersectionIndex.length);
-                // finds intersections and stores them
-                for (var i = 0; i < lineIndex.length; i++){
-                    for(var j = i+1; j < lineIndex.length; j++){
-                        // find the mutual x & y where the lines would cross if they weren't line segments
-                        // mutual x is yint2 - yint1 divided by slope1 - slope2
-                        var mutualX = ((lineIndex[j][5] - lineIndex[i][5])/(lineIndex[i][4] - lineIndex[j][4]));
-                        var mutualY = ((lineIndex[i][4] * mutualX) + lineIndex[i][5]);
+                    // this sorts out what is the range of the acceptable y values for line2
+                    if (lineIndex[i][1] > lineIndex[i][3]) {
+                        ybig2 = lineIndex[i][1];
+                        ysmall2 = lineIndex[i][3];
+                    } else if (lineIndex[i][1] == lineIndex[i][3]) {
+                        ysame2 = true;
+                    } else {
+                        ybig2 = lineIndex[i][3];
+                        ysmall2 = lineIndex[i][1];
+                    }
 
-                        // create variables to check bounds of hypothetical intersection
-                        var xbig1, xbig2, xsmall1, xsmall2;
-                        var ybig1, ybig2, ysmall1, ysmall2;
-                        var xsame1, xsame2, ysame1, ysame2;
-                        xsame1 = xsame2 = ysame1 = ysame2 = false;
-
-                        // this sorts out what is the range of the acceptable x values for line1
-                        if(lineIndex[i][0] > lineIndex[i][2]){
-                            xbig1 = lineIndex[i][0];
-                            xsmall1 = lineIndex[i][2];
-                        } else if (lineIndex[i][0] == lineIndex[i][2]) {
-                            xsame1 = true;
-                        } else {
-                            xbig1 = lineIndex[i][2];
-                            xsmall1 = lineIndex[i][0];
-                        }
-
-                        // this sorts out what is the range of the acceptable x values for line2
-                        if(lineIndex[j][0] > lineIndex[j][2]){
-                            xbig2 = lineIndex[j][0];
-                            xsmall2 = lineIndex[j][2];
-                        } else if (lineIndex[j][0] == lineIndex[j][2]) {
-                            xsame2 = true;
-                        } else {
-                            xbig2 = lineIndex[j][2];
-                            xsmall2 = lineIndex[j][0];
-                        }
-
-                        // this sorts out what is the range of the acceptable y values for line1
-                        if(lineIndex[i][1] > lineIndex[i][3]){
-                            ybig1 = lineIndex[i][1];
-                            ysmall1 = lineIndex[i][3];
-                        } else if (lineIndex[i][1] == lineIndex[i][3]) {
-                            ysame1 = true;
-                        } else {
-                            ybig1 = lineIndex[i][3];
-                            ysmall1 = lineIndex[i][1];
-                        }
-
-                        // this sorts out what is the range of the acceptable y values for line2
-                        if(lineIndex[i][1] > lineIndex[i][3]){
-                            ybig2 = lineIndex[i][1];
-                            ysmall2 = lineIndex[i][3];
-                        } else if (lineIndex[i][1] == lineIndex[i][3]) {
-                            ysame2 = true;
-                        } else {
-                            ybig2 = lineIndex[i][3];
-                            ysmall2 = lineIndex[i][1];
-                        }
-
-                        // this compares the intersection to make sure it's part of the line segements
-                        if(mutualX >= xsmall1 && mutualX <= xbig1
+                    // this compares the intersection to make sure it's part of the line segements
+                    if (mutualX >= xsmall1 && mutualX <= xbig1
                         && mutualX >= xsmall2 && mutualX <= xbig2
                         && mutualY >= ysmall1 && mutualY <= ybig1
-                        && mutualY >= ysmall2 && mutualY <= ybig2){
-                            // push intersections into an array
-                            intersectionIndex.push([i,j]);
-                        }
+                        && mutualY >= ysmall2 && mutualY <= ybig2) {
+                        // push intersections into an array
+                        intersectionIndex.push([i, j]);
                     }
                 }
-
-                // remove duplicates in intersectionIndex
-                for (var i = 0; i < intersectionIndex.length; i++){
-                    for(var j = 0; j < intersectionIndex.length; j++){
-                        if(intersectionIndex[i][0] == intersectionIndex[j][0]
-                        && intersectionIndex[i][1] == intersectionIndex[j][1]
-                        && i != j){
-                            intersectionIndex.splice(j, 1);
-                        }
-                    }
-                }
-
-                // create variables for triangle count & a temp storage for intermediate calculations
-                var totalTriangles = 0;
-                var tempContainer = [];
-
-                // Loop through each intersection and add it to a temp container to search for pairs
-                for (var i = 0; i < intersectionIndex.length; i++){
-                    for (var j = 0; j < intersectionIndex.length; j++){
-                        if(intersectionIndex[i][0] == intersectionIndex[j][1] && i != j){
-                            tempContainer.push(intersectionIndex[j][0]);
-                        }
-                        if(intersectionIndex[i][1] == intersectionIndex[j][1] && i != j){
-                            tempContainer.push(intersectionIndex[j][0]);
-                        }
-                    }
-                    // find pairs and add to triangle count then clear container
-                    for (var k = 0; k < tempContainer.length; k++){
-                        for(var l = 0; l < tempContainer.length; l++){
-                            if (tempContainer[k] == tempContainer[l] && k != l){
-                                tempContainer.splice(k,1);
-                                totalTriangles++;
-                            }
-                        }
-                    }
-                    // clear the temporary container to check the next pairing
-                    tempContainer = [];
-                }
-                // print total to screen
-                var str = "The total number of triangles is: " + totalTriangles;
-                document.getElementById("answer").innerHTML= str;
             }
-        </script>
-    </head>
-    <body onload="drawEdges();">
-        <!-- Navigation Bar On Top -->
-        <div class="topnav">
-            <a href="/">Home</a>
-            <a href="/page2">Page 2</a>
-            <a class="active" href="/page3">Page 3</a>
-        </div>
-        <h1>Draw lines to calculate triangles</h1>
-        <!-- Blank Canvas -->
-        <div class="boxCanvas">
-            <canvas id="myCanvas" width="400" height="400"></canvas>
-        </div>
-        <!-- Call triangle calculation function and print answer -->
-        <button onclick="findTriangles();">Find triangles</button>
-        <div id="answer"></div>
-        <div style="clear:both;"></div>
-        <!-- UI information -->
-        <p> The edges of the canvas are not lines.<br>
-            It's calculated to the pixel so more than 2 lines crossing at the same "point"<br>
-            will usually make a triangle since its so easy to be off<br>
-            <a href="https://github.com/Devin-V/Project2/blob/master/views/page3.ejs">github repository here</a>
-        </p>
-    </body>
+
+            // remove duplicates in intersectionIndex
+            for (var i = 0; i < intersectionIndex.length; i++) {
+                for (var j = 0; j < intersectionIndex.length; j++) {
+                    if (intersectionIndex[i][0] == intersectionIndex[j][0]
+                        && intersectionIndex[i][1] == intersectionIndex[j][1]
+                        && i != j) {
+                        intersectionIndex.splice(j, 1);
+                    }
+                }
+            }
+
+            // create variables for triangle count & a temp storage for intermediate calculations
+            var totalTriangles = 0;
+            var tempContainer = [];
+
+            // Loop through each intersection and add it to a temp container to search for pairs
+            for (var i = 0; i < intersectionIndex.length; i++) {
+                for (var j = 0; j < intersectionIndex.length; j++) {
+                    if (intersectionIndex[i][0] == intersectionIndex[j][1] && i != j) {
+                        tempContainer.push(intersectionIndex[j][0]);
+                    }
+                    if (intersectionIndex[i][1] == intersectionIndex[j][1] && i != j) {
+                        tempContainer.push(intersectionIndex[j][0]);
+                    }
+                }
+                // find pairs and add to triangle count then clear container
+                for (var k = 0; k < tempContainer.length; k++) {
+                    for (var l = 0; l < tempContainer.length; l++) {
+                        if (tempContainer[k] == tempContainer[l] && k != l) {
+                            tempContainer.splice(k, 1);
+                            totalTriangles++;
+                        }
+                    }
+                }
+                // clear the temporary container to check the next pairing
+                tempContainer = [];
+            }
+            // print total to screen
+            var str = "The total number of triangles is: " + totalTriangles;
+            document.getElementById("answer").innerHTML = str;
+        }
+    </script>
+</head>
+
+<body onload="drawEdges();">
+    <!-- Navigation Bar On Top -->
+    <div class="topnav">
+        <a href="/">Home</a>
+        <a href="/page2">Page 2</a>
+        <a class="active" href="/page3">Page 3</a>
+    </div>
+    <h1>Draw lines to calculate triangles</h1>
+    <!-- Blank Canvas -->
+    <div class="boxCanvas">
+        <canvas id="myCanvas" width="400" height="400"></canvas>
+    </div>
+    <!-- Call triangle calculation function and print answer -->
+    <button onclick="findTriangles();">Find triangles</button>
+    <div id="answer"></div>
+    <div style="clear:both;"></div>
+    <!-- UI information -->
+    <p> The edges of the canvas are not lines.<br>
+        It's calculated to the pixel so more than 2 lines crossing at the same "point"<br>
+        will usually make a triangle since its so easy to be off<br>
+        <a href="https://github.com/Devin-V/Project2/blob/master/views/page3.ejs">github repository here</a>
+    </p>
+</body>
+
 </html>
